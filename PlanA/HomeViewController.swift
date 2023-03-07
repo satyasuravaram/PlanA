@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         
         // test api call GooglePlaces
-        getPlaceByID(placeID: "", completion: {_ in })
+        //getPlaceByID(placeID: "", completion: {_ in })
     }
     
 //    @IBAction func buttonPressed() {
