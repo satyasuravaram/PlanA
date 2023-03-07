@@ -25,7 +25,8 @@ class HomeViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         
         // test api call GooglePlaces
-        getPlaceByID(placeID: "", completion: {_ in })
+//        getPlaceByID(placeID: "", completion: {_ in })
+//        getNearbyPlaces(query: "", location: locationManager.location!, completion: {_ in })
     }
     
 //    @IBAction func buttonPressed() {
@@ -43,6 +44,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse:
             print("Authorized when in use")
+            print("USER LOCATION: lat, lng = \(locationManager.location!.coordinate.latitude), \(locationManager.location!.coordinate.longitude )")
         case .authorizedAlways:
             print("Authorized always")
         case .denied:
@@ -54,5 +56,10 @@ extension HomeViewController: CLLocationManagerDelegate {
         @unknown default:
             print("Unknown status")
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let loc: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("USER CURRENT LOCATION: lat \(loc.latitude) lng \(loc.longitude)")
     }
 }
