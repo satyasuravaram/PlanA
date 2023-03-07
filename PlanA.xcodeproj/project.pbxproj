@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		233FD72B29B14C6100D652BA /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72729B14C6100D652BA /* Activity+CoreDataClass.swift */; };
+		233FD72C29B14C6100D652BA /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */; };
+		233FD72D29B14C6100D652BA /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */; };
+		233FD72E29B14C6100D652BA /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */; };
 		23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */; };
 		23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */; };
 		23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21929A9703B0086E1C4 /* PlanViewController.swift */; };
 		23A9E21C29A970590086E1C4 /* ActivitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21B29A970590086E1C4 /* ActivitySearchViewController.swift */; };
 		23A9E21E29A970AB0086E1C4 /* GeneratedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21D29A970AB0086E1C4 /* GeneratedPlanViewController.swift */; };
-		23A9E22029AAD40F0086E1C4 /* PlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21F29AAD40F0086E1C4 /* PlanModel.swift */; };
-		23A9E22229AAD71C0086E1C4 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E22129AAD71C0086E1C4 /* ActivityModel.swift */; };
 		23A9E25F29AAE9EF0086E1C4 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23A9E24C29AAE9EF0086E1C4 /* Poppins-ExtraLight.ttf */; };
 		23A9E26029AAE9EF0086E1C4 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23A9E24D29AAE9EF0086E1C4 /* Poppins-ThinItalic.ttf */; };
 		23A9E26129AAE9EF0086E1C4 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23A9E24E29AAE9EF0086E1C4 /* Poppins-ExtraLightItalic.ttf */; };
@@ -46,13 +48,15 @@
 
 /* Begin PBXFileReference section */
 		0D61595F2DAD4F67C8CF3F7E /* Pods-PlanA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanA.release.xcconfig"; path = "Target Support Files/Pods-PlanA/Pods-PlanA.release.xcconfig"; sourceTree = "<group>"; };
+		233FD72729B14C6100D652BA /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlanViewController.swift; sourceTree = "<group>"; };
 		23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		23A9E21929A9703B0086E1C4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		23A9E21B29A970590086E1C4 /* ActivitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySearchViewController.swift; sourceTree = "<group>"; };
 		23A9E21D29A970AB0086E1C4 /* GeneratedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedPlanViewController.swift; sourceTree = "<group>"; };
-		23A9E21F29AAD40F0086E1C4 /* PlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModel.swift; sourceTree = "<group>"; };
-		23A9E22129AAD71C0086E1C4 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		23A9E24C29AAE9EF0086E1C4 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		23A9E24D29AAE9EF0086E1C4 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		23A9E24E29AAE9EF0086E1C4 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -98,6 +102,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		233FD72F29B14C6A00D652BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				233FD72729B14C6100D652BA /* Activity+CoreDataClass.swift */,
+				233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */,
+				233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */,
+				233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		23A9E24B29AAE9EF0086E1C4 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +160,7 @@
 		641748CA298D8E3B0070A44F /* PlanA */ = {
 			isa = PBXGroup;
 			children = (
+				233FD72F29B14C6A00D652BA /* Model */,
 				641748CB298D8E3B0070A44F /* AppDelegate.swift */,
 				641748CD298D8E3B0070A44F /* SceneDelegate.swift */,
 				641748CF298D8E3B0070A44F /* HomeViewController.swift */,
@@ -156,8 +172,6 @@
 				641748D1298D8E3B0070A44F /* Main.storyboard */,
 				641748D9298D8E400070A44F /* LaunchScreen.storyboard */,
 				641748DC298D8E400070A44F /* Info.plist */,
-				23A9E21F29AAD40F0086E1C4 /* PlanModel.swift */,
-				23A9E22129AAD71C0086E1C4 /* ActivityModel.swift */,
 				64D56CA229AEC13E0000BF4C /* GoogleServices.swift */,
 				641748D7298D8E400070A44F /* Assets.xcassets */,
 				23A9E24B29AAE9EF0086E1C4 /* Font */,
@@ -172,7 +186,6 @@
 				D0CB7BFB8B37E8EC2EDCA737 /* Pods-PlanA.debug.xcconfig */,
 				0D61595F2DAD4F67C8CF3F7E /* Pods-PlanA.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -318,17 +331,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A9E22029AAD40F0086E1C4 /* PlanModel.swift in Sources */,
+				233FD72C29B14C6100D652BA /* Activity+CoreDataProperties.swift in Sources */,
+				233FD72B29B14C6100D652BA /* Activity+CoreDataClass.swift in Sources */,
 				641748D0298D8E3B0070A44F /* HomeViewController.swift in Sources */,
 				641748CC298D8E3B0070A44F /* AppDelegate.swift in Sources */,
 				641748D6298D8E3B0070A44F /* PlanA.xcdatamodeld in Sources */,
 				64D56CA329AEC13F0000BF4C /* GoogleServices.swift in Sources */,
 				23A9E21E29A970AB0086E1C4 /* GeneratedPlanViewController.swift in Sources */,
 				23A9E21C29A970590086E1C4 /* ActivitySearchViewController.swift in Sources */,
+				233FD72D29B14C6100D652BA /* Plan+CoreDataClass.swift in Sources */,
 				23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */,
 				641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */,
-				23A9E22229AAD71C0086E1C4 /* ActivityModel.swift in Sources */,
 				23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */,
+				233FD72E29B14C6100D652BA /* Plan+CoreDataProperties.swift in Sources */,
 				23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
