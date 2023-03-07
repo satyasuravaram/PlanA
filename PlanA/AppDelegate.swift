@@ -9,16 +9,17 @@ import UIKit
 import CoreData
 import GooglePlaces
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    static let apiKey = "AIzaSyBQuyX6q1tLNTBHH4M0UynUm7SxScMiDQA"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // Initialize GooglePlaces
-        GMSPlacesClient.provideAPIKey("AIzaSyBQuyX6q1tLNTBHH4M0UynUm7SxScMiDQA")
+        GMSPlacesClient.provideAPIKey(AppDelegate.apiKey)
         return true
     }
 

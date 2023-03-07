@@ -7,4 +7,5 @@ target 'PlanA' do
 
   # Pods for PlanA
   pod 'GooglePlaces', '7.2.0'
+  pod 'Alamofire', '5.6.4'
 end
