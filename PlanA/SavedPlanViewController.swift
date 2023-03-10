@@ -14,6 +14,19 @@ class SavedPlanViewController: UIViewController {
     @IBOutlet var popUpButton: UIButton!
     @IBOutlet var pageTitle: UILabel!
     
+    // reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    // Data for table
+    var items: [Plan]?
+    
+    // search plans
+    var searchPlans: [Plan]?
+    var searching = false
+    
+    // sorting order: true -> sort by name, false -> sort by date created
+    var sortBool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,17 +34,22 @@ class SavedPlanViewController: UIViewController {
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         pageTitle.textColor = .white
+        
         // set search bar color
         let image = UIImage()
         searchBar.backgroundImage = image
         searchBar.searchTextField.backgroundColor = .white
+        
         // set up 'sort by' button
         setUpPopUpButton()
+        
+        // get items from core data
+        fetchPlans(sortOrder: true)
     }
     
     // Creates the options and sets the title for the 'Sort by' button
     func setUpPopUpButton() {
-        let optionCloser = {(action : UIAction) in print(action.title); self.popUpButton.setTitle("Sort by", for: .normal)}
+        let optionCloser = {(action : UIAction) in print(action.title); self.popUpButton.setTitle("Sort by", for: .normal); self.sortBool = (action.title == "Name"); self.fetchPlans(sortOrder: self.sortBool)}
         
         popUpButton.menu = UIMenu(children: [
             UIAction(title: "Name", state : .on, handler: optionCloser),
@@ -42,51 +60,97 @@ class SavedPlanViewController: UIViewController {
         popUpButton.setTitle("Sort by", for: .normal)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // get plans from core data
+    func fetchPlans(sortOrder: Bool) {
+        let sort = (sortOrder) ? NSSortDescriptor(key: "name", ascending: true) : NSSortDescriptor(key: "dateCreated", ascending: true)
+        
+        do {
+            let request = Plan.fetchRequest()
+            request.sortDescriptors = [sort]
+            self.items = try context.fetch(request)
+            
+            // refresh table
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        catch {
+            print("Error in fetchPlans()")
+        }
     }
-    */
 
 }
 
+// table view
 extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
      
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // return count
+        if searching {
+            return searchPlans?.count ?? 0
+        } else {
+            return self.items?.count ?? 0
+        }
     }
      
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         // get plan from array and set labels
-        cell.textLabel?.text = "name"
-        cell.detailTextLabel?.text = "date"
+        cell.textLabel?.textColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 22.0)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        if searching {
+            cell.textLabel?.text = self.searchPlans![indexPath.row].name
+            cell.detailTextLabel?.text = self.searchPlans![indexPath.row].dateCreated?.formatted(date: .long, time: .omitted)
+        } else {
+            cell.textLabel?.text = self.items![indexPath.row].name
+            cell.detailTextLabel?.text = self.items![indexPath.row].dateCreated?.formatted(date: .long, time: .omitted)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        // create alert
+        let alert = UIAlertController(title: "Alert", message: items![indexPath.row].name, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             // delete plan
+            let planToRemove = self.items![indexPath.row]
+            self.context.delete(planToRemove)
+            do {
+                try self.context.save()
+            }
+            catch {
+                print("Issue deleting core data")
+            }
+            
+            self.fetchPlans(sortOrder: self.sortBool)
         }
         
         return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
+// search bar
 extension SavedPlanViewController: UISearchBarDelegate {
      
     func searchBar(_ searchbar: UISearchBar, textDidChange searchText: String) {
         // search for plan
+        if(searchText == "") {
+            searching = false
+        } else {
+            searchPlans = self.items?.filter({ (plan) -> Bool in
+                plan.name!.lowercased().contains(searchText.lowercased())
+            })
+            searching = true
+        }
+        tableView.reloadData()
     }
 }
