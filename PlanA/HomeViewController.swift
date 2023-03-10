@@ -80,9 +80,5 @@ extension HomeViewController: CLLocationManagerDelegate {
             print("Unknown status")
         }
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let loc: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-            print("USER CURRENT LOCATION: lat \(loc.latitude) lng \(loc.longitude)")
-    }
+
 }
