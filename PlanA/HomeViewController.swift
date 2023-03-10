@@ -56,6 +56,9 @@ class HomeViewController: UIViewController {
 //        catch {
 //            print("Issue saving core data")
 //        }
+//
+//        getPlaceByID(placeID: "", completion: {_ in })
+//        getNearbyPlaces(query: "", location: locationManager.location!, completion: {_ in })
     }
 
 }
@@ -67,6 +70,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse:
             print("Authorized when in use")
+            print("USER LOCATION: lat, lng = \(locationManager.location!.coordinate.latitude), \(locationManager.location!.coordinate.longitude )")
         case .authorizedAlways:
             print("Authorized always")
             // todo add notification
@@ -80,5 +84,9 @@ extension HomeViewController: CLLocationManagerDelegate {
             print("Unknown status")
         }
     }
-
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let loc: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("USER CURRENT LOCATION: lat \(loc.latitude) lng \(loc.longitude)")
+    }
 }

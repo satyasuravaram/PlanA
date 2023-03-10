@@ -209,6 +209,7 @@
 				641748C5298D8E3B0070A44F /* Frameworks */,
 				641748C6298D8E3B0070A44F /* Resources */,
 				30737497ACA933986E78B6AE /* [CP] Copy Pods Resources */,
+				0119C373220CD7FA522C12D8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -285,6 +286,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0119C373220CD7FA522C12D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanA/Pods-PlanA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanA/Pods-PlanA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlanA/Pods-PlanA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		12BDBC5A3AA820C1DAD8D88C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +510,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SR4HQU87UV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlanA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Plan A";
@@ -523,6 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SR4HQU87UV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlanA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Plan A";
