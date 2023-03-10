@@ -11,6 +11,7 @@
 		233FD72C29B14C6100D652BA /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */; };
 		233FD72D29B14C6100D652BA /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */; };
 		233FD72E29B14C6100D652BA /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */; };
+		238B0BB529BBB9B900F7E40D /* PlanALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 238B0BB429BBB9B900F7E40D /* PlanALogo.png */; };
 		23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */; };
 		23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */; };
 		23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21929A9703B0086E1C4 /* PlanViewController.swift */; };
@@ -52,6 +53,7 @@
 		233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		238B0BB429BBB9B900F7E40D /* PlanALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanALogo.png; sourceTree = "<group>"; };
 		23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlanViewController.swift; sourceTree = "<group>"; };
 		23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		23A9E21929A9703B0086E1C4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2375F28E29BBFAF3001853E7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				238B0BB429BBB9B900F7E40D /* PlanALogo.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		23A9E24B29AAE9EF0086E1C4 /* Font */ = {
@@ -174,6 +184,7 @@
 				641748DC298D8E400070A44F /* Info.plist */,
 				64D56CA229AEC13E0000BF4C /* GoogleServices.swift */,
 				641748D7298D8E400070A44F /* Assets.xcassets */,
+				2375F28E29BBFAF3001853E7 /* Images */,
 				23A9E24B29AAE9EF0086E1C4 /* Font */,
 				641748D4298D8E3B0070A44F /* PlanA.xcdatamodeld */,
 			);
@@ -263,6 +274,7 @@
 				23A9E26929AAE9EF0086E1C4 /* OFL.txt in Resources */,
 				23A9E26129AAE9EF0086E1C4 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				23A9E26829AAE9EF0086E1C4 /* Poppins-BlackItalic.ttf in Resources */,
+				238B0BB529BBB9B900F7E40D /* PlanALogo.png in Resources */,
 				23A9E25F29AAE9EF0086E1C4 /* Poppins-ExtraLight.ttf in Resources */,
 				23A9E26F29AAE9EF0086E1C4 /* Poppins-SemiBold.ttf in Resources */,
 				23A9E26229AAE9EF0086E1C4 /* Poppins-BoldItalic.ttf in Resources */,

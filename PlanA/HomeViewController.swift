@@ -12,6 +12,10 @@ class HomeViewController: UIViewController {
     
     var locationManager:CLLocationManager!
     
+    @IBOutlet var startPlanButton: UIButton!
+    @IBOutlet var savedPlansButton: UIButton!
+    @IBOutlet var logo: UIImageView!
+    
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -28,7 +32,13 @@ class HomeViewController: UIViewController {
         view.addSubview(imageViewBackground)
         view.sendSubviewToBack(imageViewBackground)
         
-        print("Home page")
+        // set up buttons
+        startPlanButton.backgroundColor = .white
+        startPlanButton.layer.cornerRadius = 10
+        startPlanButton.frame.size = CGSize(width: 100, height: 65)
+            
+        savedPlansButton.backgroundColor = .white
+        savedPlansButton.layer.cornerRadius = 10
         
         // Request user location
         locationManager = CLLocationManager.init()
@@ -38,6 +48,7 @@ class HomeViewController: UIViewController {
         // test api call GooglePlaces
         //getPlaceByID(placeID: "", completion: {_ in })
         
+        // test core data
 //        let newPlan = Plan(context: self.context)
 //        newPlan.name = "ctre"
 //        newPlan.dateCreated = Date()
@@ -45,7 +56,7 @@ class HomeViewController: UIViewController {
 //        let newPlan1 = Plan(context: self.context)
 //        newPlan1.name = "aadd"
 //        newPlan1.dateCreated = Date()
-//        
+//
 //        let newPlan2 = Plan(context: self.context)
 //        newPlan2.name = "jkl"
 //        newPlan2.dateCreated = Date()
