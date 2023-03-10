@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Poppins-ExtraBold.ttf">
-            <string>Poppins-ExtraBold</string>
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
         </array>
         <array key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
@@ -25,44 +25,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSM-aF-vND">
-                                <rect key="frame" x="150" y="120" width="93" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Poppins-ExtraBold" family="Poppins" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1D-4W-LVm">
-                                <rect key="frame" x="114" y="504" width="177" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go to Saved Plans">
-                                    <fontDescription key="titleFontDescription" name="Poppins-Light" family="Poppins" pointSize="17"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="4Jl-Ag-ItX" kind="show" id="yhm-p3-hGo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-rN-wQs">
-                                <rect key="frame" x="133" y="407" width="127" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start a Plan">
-                                    <fontDescription key="titleFontDescription" name="Poppins-Black" family="Poppins" pointSize="17"/>
-                                </buttonConfiguration>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-rN-wQs">
+                                <rect key="frame" x="50" y="538" width="293" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="tgA-rs-eIW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Create Plan">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="Co4-YN-nf1" kind="show" id="wHA-Xm-OWg"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="PlanALogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nuX-Vo-hjM">
+                                <rect key="frame" x="10" y="46" width="373" height="484"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1D-4W-LVm">
+                                <rect key="frame" x="50" y="653" width="293" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Hl9-3Q-ZEc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Go to Saved Plans">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4Jl-Ag-ItX" kind="show" id="yhm-p3-hGo"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="S1D-4W-LVm" secondAttribute="bottom" constant="100" id="2OZ-um-p8K"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RGm-rN-wQs" secondAttribute="trailing" constant="50" id="2qe-lv-pJT"/>
+                            <constraint firstItem="RGm-rN-wQs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="4u5-V4-tRw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S1D-4W-LVm" secondAttribute="trailing" constant="50" id="Gbw-vw-W2T"/>
+                            <constraint firstItem="S1D-4W-LVm" firstAttribute="top" secondItem="nuX-Vo-hjM" secondAttribute="bottom" constant="10" id="Jdq-5m-qNM"/>
+                            <constraint firstItem="S1D-4W-LVm" firstAttribute="top" secondItem="RGm-rN-wQs" secondAttribute="bottom" constant="50" id="L3d-ly-lJY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nuX-Vo-hjM" secondAttribute="trailing" constant="10" id="PqS-0Y-c0d"/>
+                            <constraint firstItem="nuX-Vo-hjM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="UpW-Ud-KND"/>
+                            <constraint firstItem="nuX-Vo-hjM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="iY7-fa-TIE"/>
+                            <constraint firstItem="S1D-4W-LVm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="xw4-uQ-cav"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="64t-eC-Xz0"/>
+                    <connections>
+                        <outlet property="logo" destination="nuX-Vo-hjM" id="hyC-d7-ERD"/>
+                        <outlet property="savedPlansButton" destination="S1D-4W-LVm" id="WUw-iQ-rU1"/>
+                        <outlet property="startPlanButton" destination="RGm-rN-wQs" id="6in-SP-VEl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="-2"/>
+            <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="Njq-5K-PcO">
@@ -123,24 +142,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved Plans" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBq-kX-YTV">
-                                <rect key="frame" x="92" y="87" width="209" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="32"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar opaque="NO" alpha="0.80000000000000004" contentMode="redraw" fixedFrame="YES" placeholder="Search plans" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Rr-ZGg">
-                                <rect key="frame" x="0.0" y="113" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar opaque="NO" alpha="0.80000000000000004" contentMode="redraw" placeholder="Search plans" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Rr-ZGg">
+                                <rect key="frame" x="0.0" y="148" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="4Jl-Ag-ItX" id="8Cz-7v-TgR"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0nV-g3-b4I">
-                                <rect key="frame" x="0.0" y="170" width="393" height="689"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0nV-g3-b4I">
+                                <rect key="frame" x="0.0" y="204" width="393" height="648"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="oeh-oV-LpL" detailTextLabel="PH2-5w-ane" style="IBUITableViewCellStyleSubtitle" id="a2b-Gd-vbM">
@@ -173,9 +183,8 @@
                                     <outlet property="delegate" destination="4Jl-Ag-ItX" id="mTl-dS-vS2"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tET-Sa-yW9">
-                                <rect key="frame" x="321" y="87" width="56" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tET-Sa-yW9">
+                                <rect key="frame" x="333" y="103" width="50" height="45"/>
                                 <menu key="menu" id="tzO-Tb-Mrx">
                                     <children>
                                         <command title="Name" id="Bvh-U7-NiY"/>
@@ -187,9 +196,31 @@
                                     <action selector="popUpButtonClicked" destination="4Jl-Ag-ItX" eventType="touchUpInside" id="sqN-DZ-O16"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Saved Plans" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBq-kX-YTV">
+                                <rect key="frame" x="0.0" y="103" width="393" height="36"/>
+                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="32"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KsW-gS-F1b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eic-Rr-ZGg" firstAttribute="trailing" secondItem="KsW-gS-F1b" secondAttribute="trailing" id="4Vy-jn-Icu"/>
+                            <constraint firstItem="eic-Rr-ZGg" firstAttribute="top" secondItem="rBq-kX-YTV" secondAttribute="bottom" id="4YR-gY-kBN"/>
+                            <constraint firstAttribute="bottom" secondItem="0nV-g3-b4I" secondAttribute="bottom" id="6Ad-ei-krR"/>
+                            <constraint firstAttribute="trailing" secondItem="0nV-g3-b4I" secondAttribute="trailing" id="AM7-2P-kn8"/>
+                            <constraint firstItem="KsW-gS-F1b" firstAttribute="trailing" secondItem="tET-Sa-yW9" secondAttribute="trailing" constant="10" id="DKe-Mt-Vd9"/>
+                            <constraint firstItem="eic-Rr-ZGg" firstAttribute="leading" secondItem="emP-h6-WX8" secondAttribute="leading" id="F3X-eH-faW"/>
+                            <constraint firstItem="rBq-kX-YTV" firstAttribute="top" secondItem="KsW-gS-F1b" secondAttribute="top" id="FOc-lM-Z4y"/>
+                            <constraint firstItem="rBq-kX-YTV" firstAttribute="centerX" secondItem="emP-h6-WX8" secondAttribute="centerX" id="JZR-DC-iX5"/>
+                            <constraint firstItem="tET-Sa-yW9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rBq-kX-YTV" secondAttribute="trailing" constant="8" symbolic="YES" id="XTv-CN-LoQ"/>
+                            <constraint firstItem="0nV-g3-b4I" firstAttribute="top" secondItem="eic-Rr-ZGg" secondAttribute="bottom" id="fao-6T-X20"/>
+                            <constraint firstItem="0nV-g3-b4I" firstAttribute="leading" secondItem="emP-h6-WX8" secondAttribute="leading" id="h6G-aW-XVn"/>
+                            <constraint firstItem="eic-Rr-ZGg" firstAttribute="top" secondItem="tET-Sa-yW9" secondAttribute="bottom" id="hrJ-hF-u9b"/>
+                            <constraint firstItem="0nV-g3-b4I" firstAttribute="centerX" secondItem="emP-h6-WX8" secondAttribute="centerX" id="tLJ-ZL-fjU"/>
+                            <constraint firstItem="tET-Sa-yW9" firstAttribute="centerY" secondItem="rBq-kX-YTV" secondAttribute="centerY" id="w9F-a3-kjR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="n0E-6C-Uud"/>
                     <connections>
@@ -201,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPJ-bK-DgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916.79389312977094" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="915.26717557251902" y="-2.8169014084507045"/>
         </scene>
         <!--Plan View Controller-->
         <scene sceneID="MWl-fs-pe7">
@@ -298,6 +329,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="PlanALogo.png" width="596" height="290"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
