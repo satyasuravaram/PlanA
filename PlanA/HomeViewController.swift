@@ -35,7 +35,6 @@ class HomeViewController: UIViewController {
         // set up buttons
         startPlanButton.backgroundColor = .white
         startPlanButton.layer.cornerRadius = 10
-        startPlanButton.frame.size = CGSize(width: 100, height: 65)
             
         savedPlansButton.backgroundColor = .white
         savedPlansButton.layer.cornerRadius = 10
