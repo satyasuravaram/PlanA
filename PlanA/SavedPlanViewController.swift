@@ -8,7 +8,7 @@
 import UIKit
 
 class SavedPlanViewController: UIViewController {
-
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var popUpButton: UIButton!
@@ -34,7 +34,7 @@ class SavedPlanViewController: UIViewController {
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         pageTitle.textColor = .white
-        
+       
         // set search bar color
         let image = UIImage()
         searchBar.backgroundImage = image
@@ -96,8 +96,8 @@ extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         // get plan from array and set labels
         cell.textLabel?.textColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 22.0)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        cell.textLabel?.font = UIFont(name: "Poppins-Regular", size: 22.0)
+        cell.detailTextLabel?.font = UIFont(name: "Poppins-Italic", size: 12.0)
         if searching {
             cell.textLabel?.text = self.searchPlans![indexPath.row].name
             cell.detailTextLabel?.text = self.searchPlans![indexPath.row].dateCreated?.formatted(date: .long, time: .omitted)
@@ -110,7 +110,8 @@ extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // create alert
-        let alert = UIAlertController(title: "Alert", message: items![indexPath.row].name, preferredStyle: .alert)
+        let currentArray = (searching) ? searchPlans : items
+        let alert = UIAlertController(title: "Alert", message: currentArray![indexPath.row].name, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -122,7 +123,8 @@ extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             // delete plan
-            let planToRemove = self.items![indexPath.row]
+            let currentArray = (self.searching) ? self.searchPlans : self.items
+            let planToRemove = currentArray![indexPath.row]
             self.context.delete(planToRemove)
             do {
                 try self.context.save()
