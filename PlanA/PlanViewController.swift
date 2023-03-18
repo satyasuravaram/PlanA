@@ -15,6 +15,9 @@ class PlanViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        print("hi")
+        print(plan.radius)
+        print(plan.startDateTime!.description)
     }
     
     /*
