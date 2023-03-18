@@ -9,13 +9,14 @@ import UIKit
 
 class PlanViewController: UIViewController {
 
+    @IBOutlet var navBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
     }
     
-
     /*
     // MARK: - Navigation
 
