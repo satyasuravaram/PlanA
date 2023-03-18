@@ -29,8 +29,28 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         startPlanButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         startPlanButton.layer.cornerRadius = 10
         startPlanButton.setTitleColor(.white, for: .normal)
+        
+        // add done button to number pad
+        let keypadToolbar: UIToolbar = UIToolbar()
+        keypadToolbar.items=[
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePressed))
+        ]
+        keypadToolbar.sizeToFit()
+        // add a toolbar with a done button above the number pad
+        radius.inputAccessoryView = keypadToolbar
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        // TODO: if back button is pressed and a plan object was created but did not reach generated plan page, then delete plan object so it does not show up blank on saved plans page
+    }
+    
+    @objc func donePressed() {
+        if(radius.text == "") {
+            radius.text = "10"
+        }
+        radius.resignFirstResponder()
+    }
     
     @IBAction func startDateTimeChanged(_ sender: Any) {
         print(startDateTime.date.description)
@@ -55,9 +75,9 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     }
 
 
-     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-         self.view.endEditing(true)
-     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+     self.view.endEditing(true)
+    }
 
 
 }
