@@ -9,16 +9,17 @@ import UIKit
 
 class PlanViewController: UIViewController {
 
+    @IBOutlet var navBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
         print("hi")
         print(plan.radius)
         print(plan.startDateTime!.description)
     }
     
-
     /*
     // MARK: - Navigation
 
