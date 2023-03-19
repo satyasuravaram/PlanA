@@ -19,10 +19,10 @@ class PlanViewController: UIViewController {
     
     @IBOutlet weak var generateButton: UIButton!
     @IBOutlet weak var pageTitle: UILabel!
+    @IBOutlet var navBar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         categories = [""]
         tableView.delegate = self
