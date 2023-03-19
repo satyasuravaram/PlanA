@@ -12,6 +12,7 @@ class CustomActivity: UIActivity {
     //Returns custom activity title
     override var activityTitle: String?{
         return "Save plan"
+        // return "Add to Saved Plans"
     }
     
     //Returns thumbnail image for the custom activity

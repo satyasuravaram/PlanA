@@ -36,6 +36,8 @@ class PlanViewController: UIViewController {
         generateButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         generateButton.layer.cornerRadius = 0.5 * generateButton.bounds.size.width
         generateButton.setTitleColor(.white, for: .normal)
+        
+        tableView.contentInset.bottom = 100
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,12 +96,17 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
                 cell.selectActivity.text = "Press here to select an activity"
             }
           
-            let path = UIBezierPath(roundedRect:cell.headerBackground.bounds,
-                                    byRoundingCorners:[.topLeft, .topRight],
-                                    cornerRadii: CGSize(width: 10, height:  10))
-            let maskLayer = CAShapeLayer()
-            maskLayer.path = path.cgPath
-            cell.headerBackground.layer.mask = maskLayer
+//            let path = UIBezierPath(roundedRect:cell.headerBackground.bounds,
+//                                    byRoundingCorners:[.topLeft, .topRight],
+//                                    cornerRadii: CGSize(width: 10, height:  10))
+//            let maskLayer = CAShapeLayer()
+//            maskLayer.path = path.cgPath
+//            cell.headerBackground.layer.mask = maskLayer
+            
+            cell.headerBackground.clipsToBounds = true
+            cell.headerBackground.layer.cornerRadius = 10
+            cell.headerBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            
             cell.selectionStyle = .none
             let tg = TapGesture(target: self, action: #selector(boxTapped(_:)))
             tg.index = activityNumber
