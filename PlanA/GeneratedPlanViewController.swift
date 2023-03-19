@@ -63,11 +63,12 @@ class GeneratedPlanViewController: UIViewController {
     // create export pop over view
     @IBAction func exportButtonPressed() {
         // action items
+        let shareText = "Save or share your plan."
         let sharePlan = UIActivityViewController(
             activityItems: [
-                "Save or share your plan."
+                shareText
             ],
-            applicationActivities: nil
+            applicationActivities: [CustomActivity()]
         )
         
         // ipad support
