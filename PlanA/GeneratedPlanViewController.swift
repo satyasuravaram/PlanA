@@ -68,7 +68,7 @@ class GeneratedPlanViewController: UIViewController {
             activityItems: [
                 shareText
             ],
-            applicationActivities: [CustomActivity()]
+            applicationActivities: [CustomShareActivity()]
         )
         
         // ipad support

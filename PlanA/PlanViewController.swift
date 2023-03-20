@@ -38,6 +38,8 @@ class PlanViewController: UIViewController {
         generateButton.setTitleColor(.white, for: .normal)
         
         tableView.contentInset.bottom = 100
+        self.view.insertSubview(tableView, belowSubview: generateButton)
+        generateButton.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

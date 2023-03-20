@@ -49,6 +49,7 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: CatCellIdentifier, for: indexPath as IndexPath)
         cell.textLabel?.text = currCatList[row]
+        cell.textLabel?.font = UIFont(name: "Poppins-Regular", size: 25.0)
         return cell
     }
     
@@ -59,10 +60,20 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
         if bigCategories.contains(cat) {
             currCatList = allCategories[cat]!
             tableView.reloadData()
+            
+            // back button to big categories
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backToList)
+            )
         } else {
             categories[currentIndex-1] = cat
             self.navigationController?.popViewController(animated: true)
         }
     }
     
+    // returns to big category list
+    @objc func backToList() {
+        currCatList = bigCategories
+        tableView.reloadData()
+        self.navigationItem.leftBarButtonItem = nil
+    }
 }
