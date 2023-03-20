@@ -11,7 +11,7 @@
 		233FD72C29B14C6100D652BA /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */; };
 		233FD72D29B14C6100D652BA /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */; };
 		233FD72E29B14C6100D652BA /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */; };
-		2397C5D329C6CF8D00C27E4C /* CustomActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D229C6CF8D00C27E4C /* CustomActivity.swift */; };
+		2397C5D329C6CF8D00C27E4C /* CustomShareActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */; };
 		23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */; };
 		23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */; };
 		23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21929A9703B0086E1C4 /* PlanViewController.swift */; };
@@ -57,7 +57,7 @@
 		233FD72829B14C6100D652BA /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		233FD72929B14C6100D652BA /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		233FD72A29B14C6100D652BA /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2397C5D229C6CF8D00C27E4C /* CustomActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivity.swift; sourceTree = "<group>"; };
+		2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareActivity.swift; sourceTree = "<group>"; };
 		23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlanViewController.swift; sourceTree = "<group>"; };
 		23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		23A9E21929A9703B0086E1C4 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
@@ -192,13 +192,13 @@
 				23A9E21D29A970AB0086E1C4 /* GeneratedPlanViewController.swift */,
 				641748D1298D8E3B0070A44F /* Main.storyboard */,
 				641748D9298D8E400070A44F /* LaunchScreen.storyboard */,
+				2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */,
 				23ADE44B29C14932002153B9 /* Custom Table Cell */,
 				641748DC298D8E400070A44F /* Info.plist */,
 				64D56CA229AEC13E0000BF4C /* GoogleServices.swift */,
 				641748D7298D8E400070A44F /* Assets.xcassets */,
 				23A9E24B29AAE9EF0086E1C4 /* Font */,
 				641748D4298D8E3B0070A44F /* PlanA.xcdatamodeld */,
-				2397C5D229C6CF8D00C27E4C /* CustomActivity.swift */,
 			);
 			path = PlanA;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				641748CC298D8E3B0070A44F /* AppDelegate.swift in Sources */,
 				641748D6298D8E3B0070A44F /* PlanA.xcdatamodeld in Sources */,
 				64CE148129C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift in Sources */,
-				2397C5D329C6CF8D00C27E4C /* CustomActivity.swift in Sources */,
+				2397C5D329C6CF8D00C27E4C /* CustomShareActivity.swift in Sources */,
 				64D56CA329AEC13F0000BF4C /* GoogleServices.swift in Sources */,
 				23A9E21E29A970AB0086E1C4 /* GeneratedPlanViewController.swift in Sources */,
 				23A9E21C29A970590086E1C4 /* ActivitySearchViewController.swift in Sources */,

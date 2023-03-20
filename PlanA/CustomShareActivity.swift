@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomActivity: UIActivity {
+class CustomShareActivity: UIActivity {
      
     //Returns custom activity title
     override var activityTitle: String?{
@@ -51,5 +51,5 @@ class CustomActivity: UIActivity {
 }
 
 extension UIActivity.ActivityType {
-    static let customActivity = UIActivity.ActivityType("<app bundle id>.customActivity")
+    static let customActivity = UIActivity.ActivityType("<app bundle id>.customShareActivity")
 }
