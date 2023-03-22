@@ -72,7 +72,7 @@ class PlanViewController: UIViewController {
     }
 }
 
-class TapGesture: UITapGestureRecognizer {
+public class TapGesture: UITapGestureRecognizer {
     var index = Int()
 }
 
