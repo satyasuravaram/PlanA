@@ -116,6 +116,14 @@ class GeneratedPlanViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    
+    @IBAction func plusButtonPressed() {
+        print("Plus button was PRESSED")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
+        easvc.editActivity = false
+        self.navigationController?.pushViewController(easvc, animated: true)
+    }
 }
 
 // table view
@@ -145,12 +153,20 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         // create alert
         let cell = tableView.cellForRow(at: indexPath)
         if(cell is CustomActivityTableViewCell) {
-            let alert = UIAlertController(title: "Alert", message: items[indexPath.row / 2], preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
+//            let alert = UIAlertController(title: "Alert", message: items[indexPath.row / 2], preferredStyle: .alert)
+//            let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+//                tableView.deselectRow(at: indexPath, animated: true)
+//            }
+//            alert.addAction(okButton)
+//            self.present(alert, animated: true)
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
+            easvc.editActivity = true
+            easvc.activityName = items[indexPath.row/2]
+            easvc.address = "1234 Home Drive"
+            self.navigationController?.pushViewController(easvc, animated: true)
         }
     }
     

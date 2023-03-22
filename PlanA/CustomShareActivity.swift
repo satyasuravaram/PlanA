@@ -11,7 +11,7 @@ class CustomShareActivity: UIActivity {
      
     //Returns custom activity title
     override var activityTitle: String?{
-        return "Save plan"
+        return "Save plan in app"
         // return "Add to Saved Plans"
     }
     

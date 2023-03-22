@@ -23,7 +23,7 @@ class CustomAddTableViewCell: UITableViewCell {
 //    }
 
     // add a new activity to the plan
-    @IBAction func addButtonPressed() {
-        print("Add button was PRESSED")
-    }
+//    @IBAction func addButtonPressed() {
+//        print("Add button was PRESSED")
+//    }
 }
