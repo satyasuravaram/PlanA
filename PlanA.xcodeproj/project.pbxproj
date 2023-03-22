@@ -46,6 +46,7 @@
 		641748D6298D8E3B0070A44F /* PlanA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 641748D4298D8E3B0070A44F /* PlanA.xcdatamodeld */; };
 		641748D8298D8E400070A44F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 641748D7298D8E400070A44F /* Assets.xcassets */; };
 		641748DB298D8E400070A44F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641748D9298D8E400070A44F /* LaunchScreen.storyboard */; };
+		642DA51529CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DA51429CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift */; };
 		64CE147F29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE147E29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift */; };
 		64CE148129C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE148029C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift */; };
 		64D56CA329AEC13F0000BF4C /* GoogleServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D56CA229AEC13E0000BF4C /* GoogleServices.swift */; };
@@ -96,6 +97,7 @@
 		641748D7298D8E400070A44F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		641748DA298D8E400070A44F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		641748DC298D8E400070A44F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		642DA51429CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivitySearchTableViewCell.swift; sourceTree = "<group>"; };
 		64CE147E29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		64CE148029C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddActivityBoxTableViewCell.swift; sourceTree = "<group>"; };
 		64D56CA229AEC13E0000BF4C /* GoogleServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServices.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				23ADE44329C144EC002153B9 /* CustomActivityTableViewCell.swift */,
 				64CE147E29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift */,
 				64CE148029C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift */,
+				642DA51429CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift */,
 			);
 			path = "Custom Table Cell";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */,
 				233FD72E29B14C6100D652BA /* Plan+CoreDataProperties.swift in Sources */,
 				23ADE44A29C147E5002153B9 /* CustomAddTableViewCell.swift in Sources */,
+				642DA51529CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift in Sources */,
 				23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */,
 				2397C5D529CA373D00C27E4C /* EditAddActViewController.swift in Sources */,
 			);
