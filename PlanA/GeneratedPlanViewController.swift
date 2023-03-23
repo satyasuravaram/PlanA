@@ -42,7 +42,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Generate plan
-        generatePlan(catCount: catCount)
+//        generatePlan(catCount: catCount)
         
         // Do any additional setup after loading the view.
         // set background and title color

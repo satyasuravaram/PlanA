@@ -30,6 +30,8 @@ class PlanViewController: UIViewController {
         categories = [""]
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
         tableView.separatorStyle = .none
         tableView.layer.zPosition = 5
         view.layer.zPosition = 1
@@ -78,16 +80,16 @@ public class TapGesture: UITapGestureRecognizer {
 
 extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count * 2 // plus button cell beneath each category cell
+        return categories.count + 1 // plus button cell beneath each category cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        if row % 2 == 0 {
+        if (row + 1 != tableView.numberOfRows(inSection: 0)) {
             let cell = tableView.dequeueReusableCell(withIdentifier: BoxCellIdentifier, for: indexPath as IndexPath) as! CustomActivityCategoryTableViewCell
             cell.cellBackground.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
             cell.headerBackground.backgroundColor = UIColor(red: 0.21, green: 0.65, blue: 1.00, alpha: 1.00)
-            let activityNumber = row/2 + 1
+            let activityNumber = row + 1
             cell.activityNumber.text = "Activity #\(activityNumber)"
             cell.activityNumber.font = UIFont(name: "Poppins-SemiBold", size: 17)
             cell.activityNumber.textColor = .white
@@ -120,7 +122,7 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PurplePlusCellIdentifier, for: indexPath as IndexPath) as! CustomAddActivityBoxTableViewCell
             cell.selectionStyle = .none
-            cell.index = row/2+1
+            cell.index = row
             cell.insertBox = { index in
                 self.addCategoryBox(index: index)
             }
@@ -131,5 +133,42 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        if(cell is CustomActivityCategoryTableViewCell) {
+            let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+                
+                categories.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            }
+            return UISwipeActionsConfiguration(actions: [action])
+        }
+        return nil
+    }
+    
+    // allows reordering of cells
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return (tableView.cellForRow(at: indexPath) is CustomActivityCategoryTableViewCell)
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let activity = categories[sourceIndexPath.row]
+        categories.remove(at: sourceIndexPath.row)
+        categories.insert(activity, at: destinationIndexPath.row)
+        
+        self.tableView.reloadData()
+    }
+}
+
+// UITableViewDragDelegate
+extension PlanViewController:UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if (tableView.cellForRow(at: indexPath) is CustomAddActivityBoxTableViewCell) {
+            return []
+        }
+        return [UIDragItem(itemProvider: NSItemProvider(object: categories[indexPath.row] as NSItemProviderWriting))]
     }
 }
