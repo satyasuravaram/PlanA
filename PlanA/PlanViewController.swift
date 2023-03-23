@@ -10,6 +10,9 @@ import UIKit
 // Stores category names for activities
 public var categories = [""]
 
+// Stores activities for generated plan
+public var activities:[Activity] = []
+
 class PlanViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -54,15 +57,12 @@ class PlanViewController: UIViewController {
     }
     
     @IBAction func generateButtonPressed(_ sender: Any) {
-        // Make sure user selects all categories
         for category in categories {
             if category == "" {
                 // TODO: alert user to select activity category
+                return
             }
         }
-        
-        // Generate plan
-        //
     }
     
     @objc func boxTapped(_ sender:TapGesture!) {
