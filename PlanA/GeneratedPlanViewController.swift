@@ -23,7 +23,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Data for table
-//    var items = ["one", "two", "three"]
+    //    var items = ["one", "two", "three"]
     
     var saved = false
     
@@ -63,7 +63,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         let tapped = UITapGestureRecognizer(target: self, action: titleSelect)
         tapped.numberOfTapsRequired = 1
         pencilEditImage.addGestureRecognizer(tapped)
-       
+        
         // set up route button
         saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         saveButton.layer.cornerRadius = 10
@@ -113,6 +113,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         }
+    }
         
     // replace title label with text field
     @objc func titleClicked() {
@@ -164,7 +165,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         // present
         present(sharePlan, animated: true)
     }
-
+    
     @objc func appMovedToBackground() {
         if(!self.saved) {
             let alert = UIAlertController(title: "Do you want to save this plan before you exit.", message: "It can be revisted under Saved Plans", preferredStyle: .alert)
@@ -178,7 +179,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 self.saved = false
             }
             alert.addAction(cancelButton)
-
+            
             self.present(alert, animated: true)
         }
     }
@@ -198,7 +199,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(cancelButton)
-
+            
             self.present(alert, animated: true)
         }
     }
@@ -214,11 +215,11 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
 
 // table view
 extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSource {
-     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activities.count * 2;
     }
-     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create alternating cells of activties and add buttons
         if(indexPath.row % 2 == 0) {
