@@ -9,6 +9,7 @@ import UIKit
 
 // Stores category names for activities
 public var categories = [""]
+public var durations = [""]
 
 // Stores activities for generated plan
 public var activities:[Activity] = []
@@ -53,6 +54,7 @@ class PlanViewController: UIViewController {
     
     func addCategoryBox(index:Int) {
         categories.insert("", at: index)
+        durations.insert("", at: index)
         self.tableView.reloadData()
     }
     
@@ -95,9 +97,20 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             cell.activityNumber.textColor = .white
             cell.cellBackground.layer.cornerRadius = 10
             cell.selectActivity.font = UIFont(name: "Poppins", size: 17)
-            cell.selectActivity.text = categories[activityNumber-1]
             if categories[activityNumber-1] == "" {
                 cell.selectActivity.text = "Press here to select an activity"
+            } else {
+                var text = String(categories[activityNumber-1] + "\nDuration: ")
+                let durationArr = durations[activityNumber-1].split(separator: ":")
+                if(Int(durationArr[0]) == 1) {
+                    text = text + durationArr[0] + " hour "
+                } else if(Int(durationArr[0]) != 0) {
+                    text = text + durationArr[0] + " hours "
+                }
+                if(Int(durationArr[1]) != 0) {
+                    text = text + durationArr[1] + " minutes"
+                }
+                cell.selectActivity.text = text
             }
           
 //            let path = UIBezierPath(roundedRect:cell.headerBackground.bounds,
@@ -142,6 +155,7 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
                 
                 categories.remove(at: indexPath.row)
+                durations.remove(at: indexPath.row)
                 self.tableView.reloadData()
             }
             return UISwipeActionsConfiguration(actions: [action])
@@ -158,6 +172,10 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
         let activity = categories[sourceIndexPath.row]
         categories.remove(at: sourceIndexPath.row)
         categories.insert(activity, at: destinationIndexPath.row)
+        
+        let actDuration = durations[sourceIndexPath.row]
+        durations.remove(at: sourceIndexPath.row)
+        durations.insert(actDuration, at: destinationIndexPath.row)
         
         self.tableView.reloadData()
     }

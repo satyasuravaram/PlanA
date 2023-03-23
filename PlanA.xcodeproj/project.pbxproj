@@ -39,6 +39,7 @@
 		23A9E27129AAE9EF0086E1C4 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23A9E25E29AAE9EF0086E1C4 /* Poppins-MediumItalic.ttf */; };
 		23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE44329C144EC002153B9 /* CustomActivityTableViewCell.swift */; };
 		23ADE44A29C147E5002153B9 /* CustomAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE44929C147E5002153B9 /* CustomAddTableViewCell.swift */; };
+		23EB22E829CCE2410063CFA1 /* DurationInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */; };
 		641748CC298D8E3B0070A44F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641748CB298D8E3B0070A44F /* AppDelegate.swift */; };
 		641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641748CD298D8E3B0070A44F /* SceneDelegate.swift */; };
 		641748D0298D8E3B0070A44F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641748CF298D8E3B0070A44F /* HomeViewController.swift */; };
@@ -87,6 +88,7 @@
 		23A9E25E29AAE9EF0086E1C4 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		23ADE44329C144EC002153B9 /* CustomActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityTableViewCell.swift; sourceTree = "<group>"; };
 		23ADE44929C147E5002153B9 /* CustomAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddTableViewCell.swift; sourceTree = "<group>"; };
+		23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationInputViewController.swift; sourceTree = "<group>"; };
 		5AAF002486C4AC7301A6E59C /* Pods_PlanA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		641748C8298D8E3B0070A44F /* PlanA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		641748CB298D8E3B0070A44F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				23A9E21B29A970590086E1C4 /* ActivitySearchViewController.swift */,
 				23A9E21D29A970AB0086E1C4 /* GeneratedPlanViewController.swift */,
 				2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */,
+				23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */,
 				641748D1298D8E3B0070A44F /* Main.storyboard */,
 				641748D9298D8E400070A44F /* LaunchScreen.storyboard */,
 				2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */,
@@ -391,6 +394,7 @@
 				64CE147F29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift in Sources */,
 				233FD72D29B14C6100D652BA /* Plan+CoreDataClass.swift in Sources */,
 				23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */,
+				23EB22E829CCE2410063CFA1 /* DurationInputViewController.swift in Sources */,
 				641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */,
 				23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */,
 				23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */,
