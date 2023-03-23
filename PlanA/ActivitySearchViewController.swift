@@ -71,12 +71,24 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
         // Left category cell
         if catIndex < currCatList.count {
             cell.leftCategory.layer.cornerRadius = 10
+            cell.leftCategory.layer.borderColor = UIColor.lightGray.cgColor
+            cell.leftCategory.layer.borderWidth = 2
+            
+            cell.leftVStack.layer.cornerRadius = 10
+            cell.leftVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            
             cell.leftCategoryLabel.text = currCatList[catIndex]
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex
             tg.numberOfTapsRequired = 1
             tg.numberOfTouchesRequired = 1
             cell.leftCategory.addGestureRecognizer(tg)
+            
+            let tapped = TapGesture(target: self, action: #selector(categoryTapped(_:)))
+            tapped.index = catIndex
+            tapped.numberOfTapsRequired = 1
+            tapped.numberOfTouchesRequired = 1
+            cell.leftVStack.addGestureRecognizer(tapped)
         }
         
         // Right category cell
@@ -84,12 +96,25 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
             cell.rightCategory.isHidden = false
             cell.rightCategoryLabel.isHidden = false
             cell.rightCategory.layer.cornerRadius = 10
+            cell.rightCategory.layer.borderColor = UIColor.lightGray.cgColor
+            cell.rightCategory.layer.borderWidth = 2
+            
+            cell.rightVStack.layer.cornerRadius = 10
+            cell.rightVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            
             cell.rightCategoryLabel.text = currCatList[catIndex+1]
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex+1
             tg.numberOfTapsRequired = 1
             tg.numberOfTouchesRequired = 1
             cell.rightCategory.addGestureRecognizer(tg)
+            
+            let tapped = TapGesture(target: self, action: #selector(categoryTapped(_:)))
+            tapped.index = catIndex+1
+            tapped.numberOfTapsRequired = 1
+            tapped.numberOfTouchesRequired = 1
+            cell.rightCategory.addGestureRecognizer(tapped)
+            
         } else {
             cell.rightCategory.isHidden = true
             cell.rightCategoryLabel.isHidden = true

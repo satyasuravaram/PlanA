@@ -13,6 +13,8 @@ class CustomActivitySearchTableViewCell: UITableViewCell {
     @IBOutlet weak var leftCategoryLabel: UILabel!
     @IBOutlet weak var rightCategory: UIImageView!
     @IBOutlet weak var rightCategoryLabel: UILabel!
+    @IBOutlet weak var leftVStack: UIStackView!
+    @IBOutlet weak var rightVStack: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
