@@ -8,6 +8,8 @@
 import UIKit
 import CoreLocation
 
+public var locMan:CLLocationManager!
+
 class HomeViewController: UIViewController {
     
     var locationManager:CLLocationManager!
@@ -43,7 +45,7 @@ class HomeViewController: UIViewController {
         locationManager = CLLocationManager.init()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
+        locMan = locationManager
         // test api call GooglePlaces
         //getPlaceByID(placeID: "", completion: {_ in })
         

@@ -80,11 +80,11 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func startPlanButtonPressed(_ sender: Any) {
         leavePage = true
         
-        let radiusVal = Int64(radius.text!)
+        let radiusVal = Int64(radius.text!)! * 1609 // convert to meters for API
 
         // Create Plan
         plan = Plan(context: self.context)
-        plan.updateDetails(newDate: startDateTime.date, newRadius: radiusVal!)
+        plan.updateDetails(newDate: startDateTime.date, newRadius: radiusVal)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
