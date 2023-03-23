@@ -52,8 +52,15 @@ class ActivitySearchViewController: UIViewController {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backToList)
             )
         } else {
-            categories[currentIndex-1] = cat
-            self.navigationController?.popViewController(animated: true)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let divc = storyboard.instantiateViewController(withIdentifier: "durationinput_vc") as! DurationInputViewController
+            divc.activityName = cat
+            divc.currentPlanIndex = currentIndex
+            self.navigationController?.pushViewController(divc, animated: true)
+            
+//            categories[currentIndex-1] = cat
+//            self.navigationController?.popViewController(animated: true)
         }
     }
 }
