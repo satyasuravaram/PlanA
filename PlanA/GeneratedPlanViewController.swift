@@ -21,12 +21,26 @@ class GeneratedPlanViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Data for table
-    var items = ["one", "two", "three"]
+//    var items = ["one", "two", "three"]
     
     var saved = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activities = []
+        
+        // How many activities per category
+        var catCount:[String:Int] = [:]
+        for cat in categories {
+            if catCount.keys.contains(cat) {
+                catCount[cat]! += 1
+            } else {
+                catCount[cat] = 1
+            }
+        }
+        
+        // Generate plan
+        generatePlan(catCount: catCount)
         
         // Do any additional setup after loading the view.
         // set background and title color
@@ -58,6 +72,31 @@ class GeneratedPlanViewController: UIViewController {
         // back button
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(savePlan)
         )
+    }
+    
+    func generatePlan(catCount:[String:Int]) {
+        
+        // TODO: catCount.keys is randomly ordered. Fix to match ordering from Your Plan page.
+        for cat in catCount.keys {
+            // Call API for each category, store results
+            getNearbyPlaces(query: cat, radius: plan.radius, location: locMan.location!, completion: { places in
+                let count = catCount[cat]!
+                // TODO: randomly select activities instead of choosing from beginning of array
+                for index in 0..<count {
+                    let place = places[index]
+                    // Populate activities
+                    let activity:Activity = Activity(context: self.context)
+                    // TODO: populate other activity fields here (hours, duration, description, etc)
+                    activity.name = place["name"] as? String
+                    activity.location = "\(place["placeLat"]!),\(place["placeLng"]!))"
+                    activities.append(activity)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+        }
+        
     }
     
     // create export pop over view
@@ -130,14 +169,14 @@ class GeneratedPlanViewController: UIViewController {
 extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSource {
      
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count * 2;
+        return activities.count * 2;
     }
      
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create alternating cells of activties and add buttons
         if(indexPath.row % 2 == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
-            cell.titleLabel.text = items[indexPath.row / 2]
+            cell.titleLabel.text = activities[indexPath.row / 2].name
             cell.durationLabel.text = "2 hours"
             cell.cellBackground.image = UIImage(named: "GrayBox")
             cell.cellBackground.layer.cornerRadius = 20
@@ -153,7 +192,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         // create alert
         let cell = tableView.cellForRow(at: indexPath)
         if(cell is CustomActivityTableViewCell) {
-//            let alert = UIAlertController(title: "Alert", message: items[indexPath.row / 2], preferredStyle: .alert)
+//            let alert = UIAlertController(title: "Alert", message: activities[indexPath.row / 2], preferredStyle: .alert)
 //            let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
 //                tableView.deselectRow(at: indexPath, animated: true)
 //            }
@@ -164,7 +203,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
             easvc.editActivity = true
-            easvc.activityName = items[indexPath.row/2]
+            easvc.activityName = activities[indexPath.row/2].name!
             easvc.address = "1234 Home Drive"
             self.navigationController?.pushViewController(easvc, animated: true)
         }
@@ -176,7 +215,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         if(cell is CustomActivityTableViewCell) {
             let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
                 
-                self.items.remove(at: indexPath.row / 2)
+                activities.remove(at: indexPath.row / 2)
                 self.tableView.reloadData()
             }
             return UISwipeActionsConfiguration(actions: [action])
@@ -190,9 +229,9 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let item = items[sourceIndexPath.row / 2]
-        items.remove(at: sourceIndexPath.row / 2)
-        items.insert(item, at: destinationIndexPath.row / 2)
+        let item = activities[sourceIndexPath.row / 2]
+        activities.remove(at: sourceIndexPath.row / 2)
+        activities.insert(item, at: destinationIndexPath.row / 2)
         
         self.tableView.reloadData()
     }
@@ -204,6 +243,6 @@ extension GeneratedPlanViewController:UITableViewDragDelegate {
         if (tableView.cellForRow(at: indexPath) is CustomAddTableViewCell) {
             return []
         }
-        return [UIDragItem(itemProvider: NSItemProvider(object: items[indexPath.row / 2] as NSItemProviderWriting))]
+        return [UIDragItem(itemProvider: NSItemProvider(object: activities[indexPath.row / 2].name! as NSItemProviderWriting))]
     }
 }
