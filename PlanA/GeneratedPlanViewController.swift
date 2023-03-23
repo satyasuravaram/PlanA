@@ -7,15 +7,17 @@
 
 import UIKit
 
-class GeneratedPlanViewController: UIViewController {
+class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var exportButton: UIButton!
-    @IBOutlet var routeButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
     @IBOutlet var pageTitle: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var stopsLabel: UILabel!
     @IBOutlet var vStack: UIStackView!
+    @IBOutlet var planName: UITextField!
+    @IBOutlet var pencilEditImage: UIImageView!
     
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -46,14 +48,29 @@ class GeneratedPlanViewController: UIViewController {
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         pageTitle.textColor = .white
+        planName.isHidden = true
+        pencilEditImage.isHidden = false
+        
+        // edit plan name
+        pageTitle.isUserInteractionEnabled = true
+        let titleSelected : Selector = #selector(self.titleClicked)
+        let tapGesture = UITapGestureRecognizer(target: self, action: titleSelected)
+        tapGesture.numberOfTapsRequired = 1
+        pageTitle.addGestureRecognizer(tapGesture)
+        
+        pencilEditImage.isUserInteractionEnabled = true
+        let titleSelect : Selector = #selector(self.pencilClicked)
+        let tapped = UITapGestureRecognizer(target: self, action: titleSelect)
+        tapped.numberOfTapsRequired = 1
+        pencilEditImage.addGestureRecognizer(tapped)
        
         // set up route button
-        routeButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
-        routeButton.layer.cornerRadius = 10
-        routeButton.setTitleColor(.white, for: .normal)
+        saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
+        saveButton.layer.cornerRadius = 10
+        saveButton.setTitleColor(.white, for: .normal)
         vStack.backgroundColor = .white
         let width = vStack.bounds.size.width
-        routeButton.frame = CGRectMake(0, 0, width-10, 100)
+        saveButton.frame = CGRectMake(0, 0, width-10, 100)
         
         // set up labels
         timeLabel.textColor = .white
@@ -97,6 +114,36 @@ class GeneratedPlanViewController: UIViewController {
             })
         }
         
+    // replace title label with text field
+    @objc func titleClicked() {
+        print("title pressed")
+        pageTitle.isHidden = true
+        planName.isHidden = false
+        pencilEditImage.isHidden = true
+        planName.text = pageTitle.text
+        planName.becomeFirstResponder()
+    }
+    
+    @objc func pencilClicked() {
+        print("pencil pressed")
+        pageTitle.isHidden = true
+        planName.isHidden = false
+        pencilEditImage.isHidden = true
+        planName.text = pageTitle.text
+        planName.becomeFirstResponder()
+    }
+    
+    // display new plan name
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if(planName.text == "") {
+            planName.text = "Your Plan"
+        }
+        planName.resignFirstResponder()
+        planName.isHidden = true
+        pageTitle.text = planName.text
+        pageTitle.isHidden = false
+        pencilEditImage.isHidden = false
+        return true
     }
     
     // create export pop over view
