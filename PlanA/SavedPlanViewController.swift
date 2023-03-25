@@ -117,6 +117,15 @@ extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
         }
         alert.addAction(okButton)
         self.present(alert, animated: true)
+        
+//        // get selected plan
+//        let selectedPlan = currentArray![indexPath.row]
+//        // update generated plan view variables
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let gpvc = storyboard.instantiateViewController(withIdentifier: "generatedplan_vc") as! GeneratedPlanViewController
+//        gpvc.selectedSavedPlan = selectedPlan
+//        gpvc.didSelectPlan = true
+//        self.navigationController?.pushViewController(gpvc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

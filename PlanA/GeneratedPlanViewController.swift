@@ -22,10 +22,11 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    // Data for table
-    //    var items = ["one", "two", "three"]
-    
     var saved = false
+    
+    // selected plan from saved plans
+    var selectedSavedPlan: Plan!
+    var didSelectPlan: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,24 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             } else {
                 catCount[cat] = 1
             }
+        }
+        
+        // TODO: can't regenerate plan if coming from saved plans, should just display
+//        if(didSelectPlan) {
+//
+//        } else {
+//
+//        }
+        
+        // set up activities
+        for (index, element) in categories.enumerated() {
+            let activity:Activity = Activity(context: self.context)
+            activity.categoryName = element
+            let durationArr = durations[index].split(separator: ":")
+            let hours = Int(durationArr[0])! * 60 * 60
+            let minutes = Int(durationArr[1])! * 60
+            activity.duration = Double(hours + minutes)
+            activities.append(activity)
         }
         
         // Generate plan
@@ -93,26 +112,43 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     func generatePlan(catCount:[String:Int]) {
         
+        // populate plan object
+        plan.name = "Your Plan"
+        plan.numOfActivties = Int64(activities.count)
+        
         // TODO: catCount.keys is randomly ordered. Fix to match ordering from Your Plan page.
         for cat in catCount.keys {
             // Call API for each category, store results
             getNearbyPlaces(query: cat, radius: plan.radius, location: locMan.location!, completion: { places in
                 let count = catCount[cat]!
+                
+                let result = activities.filter { act in
+                    act.categoryName == cat
+                }
+                
+                // TODO: need to refine list by business hours to chekc if activity is available
                 // TODO: randomly select activities instead of choosing from beginning of array
                 for index in 0..<count {
                     let place = places[index]
-                    // Populate activities
-                    let activity:Activity = Activity(context: self.context)
-                    // TODO: populate other activity fields here (hours, duration, description, etc)
-                    activity.name = place["name"] as? String
-                    activity.location = "\(place["placeLat"]!),\(place["placeLng"]!))"
-                    activities.append(activity)
+//                    // Populate activities
+//                    let activity:Activity = Activity(context: self.context)
+                    // TODO: populate other activity fields here (business hours, description, etc)
+//                    activity.name = place["name"] as? String
+//                    activity.location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
+//                    activities.append(activity)
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+                    
+                    result[index].name = place["name"] as? String
+                    result[index].location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 }
             })
         }
+        plan.listActs = activities
     }
         
     // replace title label with text field
@@ -144,6 +180,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         pageTitle.text = planName.text
         pageTitle.isHidden = false
         pencilEditImage.isHidden = false
+        plan.name = planName.text
         return true
     }
     
@@ -172,6 +209,12 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
                 print("save")
                 self.saved = true
+                do {
+                    try self.context.save()
+                }
+                catch {
+                    print("Issue saving core data")
+                }
             }
             alert.addAction(okButton)
             let cancelButton = UIAlertAction(title: "Cancel", style: .default) { (action) in
@@ -190,6 +233,12 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
                 print("save")
                 self.saved = true
+                do {
+                    try self.context.save()
+                }
+                catch {
+                    print("Issue saving core data")
+                }
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
@@ -211,6 +260,20 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         easvc.editActivity = false
         self.navigationController?.pushViewController(easvc, animated: true)
     }
+    
+    @IBAction func saveButtonPressed() {
+        saved = true
+        do {
+            try self.context.save()
+            let alert = UIAlertController(title: "Plan saved.", message: "You can now revisit this plan in Saved Plans.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+        }
+        catch {
+            print("Issue saving core data")
+        }
+    }
 }
 
 // table view
@@ -225,7 +288,19 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         if(indexPath.row % 2 == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
             cell.titleLabel.text = activities[indexPath.row / 2].name
-            cell.durationLabel.text = "2 hours"
+            var text = "For "
+            let time = Int(activities[indexPath.row / 2].duration)
+            let hours = Int(time) / 3600
+            let minutes = Int(time) / 60 % 60
+            if(hours == 1) {
+                text = text + String(hours) + " hour "
+            } else if(hours != 0) {
+                text = text + String(hours) + " hours "
+            }
+            if(minutes != 0) {
+                text = text + String(minutes) + " minutes"
+            }
+            cell.durationLabel.text = text
             cell.cellBackground.image = UIImage(named: "GrayBox")
             cell.cellBackground.layer.cornerRadius = 20
             return cell
@@ -240,19 +315,18 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         // create alert
         let cell = tableView.cellForRow(at: indexPath)
         if(cell is CustomActivityTableViewCell) {
-//            let alert = UIAlertController(title: "Alert", message: activities[indexPath.row / 2], preferredStyle: .alert)
-//            let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
-//                tableView.deselectRow(at: indexPath, animated: true)
-//            }
-//            alert.addAction(okButton)
-//            self.present(alert, animated: true)
-            
             tableView.deselectRow(at: indexPath, animated: true)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
             easvc.editActivity = true
             easvc.activityName = activities[indexPath.row/2].name!
-            easvc.address = "1234 Home Drive"
+            // set address
+            easvc.address = activities[indexPath.row/2].location!
+            // set proper duration
+            let durationArr = durations[indexPath.row/2].split(separator: ":")
+            let hours = Int(durationArr[0])! * 60 * 60
+            let minutes = Int(durationArr[1])! * 60
+            easvc.seconds = hours + minutes
             self.navigationController?.pushViewController(easvc, animated: true)
         }
     }
