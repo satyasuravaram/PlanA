@@ -17,9 +17,6 @@ class HomeViewController: UIViewController {
     @IBOutlet var startPlanButton: UIButton!
     @IBOutlet var savedPlansButton: UIButton!
     @IBOutlet var logo: UIImageView!
-    
-    // reference to managed object context
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,26 +46,6 @@ class HomeViewController: UIViewController {
         // test api call GooglePlaces
         //getPlaceByID(placeID: "", completion: {_ in })
         
-        // test core data
-//        let newPlan = Plan(context: self.context)
-//        newPlan.name = "ctre"
-//        newPlan.dateCreated = Date()
-//
-//        let newPlan1 = Plan(context: self.context)
-//        newPlan1.name = "aadd"
-//        newPlan1.dateCreated = Date()
-//
-//        let newPlan2 = Plan(context: self.context)
-//        newPlan2.name = "jkl"
-//        newPlan2.dateCreated = Date()
-//
-//        do {
-//            try self.context.save()
-//        }
-//        catch {
-//            print("Issue saving core data")
-//        }
-//
 //        getPlaceByID(placeID: "", completion: {_ in })
 //        getNearbyPlaces(query: "", location: locationManager.location!, completion: {_ in })
     }

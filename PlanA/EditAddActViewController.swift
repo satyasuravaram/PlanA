@@ -22,6 +22,7 @@ class EditAddActViewController: UIViewController {
     var editActivity: Bool = false
     var activityName: String = ""
     var address: String = ""
+    var seconds: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class EditAddActViewController: UIViewController {
             doneButton.titleLabel?.textColor = .white
             activityLabel.text = "Activity:\t" + activityName
             addressLabel.text = "Address:\t" + address
+            duration.countDownDuration = TimeInterval(seconds)
         } else {
             // add activity view
             pageTitle.text = "Add Activity"

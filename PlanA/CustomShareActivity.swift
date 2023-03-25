@@ -8,6 +8,9 @@
 import UIKit
 
 class CustomShareActivity: UIActivity {
+    
+    // reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
      
     //Returns custom activity title
     override var activityTitle: String?{
@@ -47,6 +50,12 @@ class CustomShareActivity: UIActivity {
     override func prepare(withActivityItems activityItems: [Any]) {
         //Perform action on tap of custom activity
         print("WAS CLICKED")
+        do {
+            try self.context.save()
+        }
+        catch {
+            print("Issue saving core data")
+        }
     }
 }
 

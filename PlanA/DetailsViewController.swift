@@ -19,6 +19,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     
     var leavePage = false
     
+    // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -85,6 +86,8 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         // Create Plan
         plan = Plan(context: self.context)
         plan.updateDetails(newDate: startDateTime.date, newRadius: radiusVal)
+        plan.dateCreated = Date()
+        plan.id = UUID()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -59,12 +59,25 @@ class PlanViewController: UIViewController {
     }
     
     @IBAction func generateButtonPressed(_ sender: Any) {
+        // no activites
+        if (categories.count == 0) {
+            // alert there are no activities in plan
+            let alert = UIAlertController(title: "You have no activities in your plan.", message: "Add activities to generate a plan.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+        }
+        // empty activities
         for category in categories {
             if category == "" {
-                // TODO: alert user to select activity category
-                return
+                let alert = UIAlertController(title: "An activity in your plan is empty.", message: "Select it to add an activity or swipe left to delete it.", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(okButton)
+                self.present(alert, animated: true)
             }
         }
+//        print("Categories: ", categories.description)
+//        print("Durations: ", durations.description)
     }
     
     @objc func boxTapped(_ sender:TapGesture!) {
