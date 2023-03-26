@@ -64,6 +64,8 @@ class EditAddActViewController: UIViewController {
         } else {
             // add activity view
             pageTitle.text = "Add Activity"
+            activityLabel.text = "Activity:"
+            addressLabel.text = "Address:"
             chosenAddress.isHidden = false
             chosenActivityName.isHidden = false
             chosenAddress.isEnabled = true
@@ -80,6 +82,14 @@ class EditAddActViewController: UIViewController {
     
     @IBAction func directionsButtonPressed() {
         print("Get directions")
+        let locationArr = address.split(separator: ",")
+        let lat = locationArr[0].replacingOccurrences(of: "(", with: "")
+        let lng = locationArr[1].replacingOccurrences(of: ")", with: "")
+        
+        // open google maps in safari
+        if let url = URL(string: "https://www.google.co.in/maps/dir/??saddr=&daddr=\(lat),\(lng)&directionsmode=driving") {
+            UIApplication.shared.open(url)
+        }
     }
     
     @objc func doneTyping() {

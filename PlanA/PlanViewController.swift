@@ -60,6 +60,7 @@ class PlanViewController: UIViewController {
     
     @IBAction func generateButtonPressed(_ sender: Any) {
         // no activites
+        generateButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         if (categories.count == 0) {
             // alert there are no activities in plan
             let alert = UIAlertController(title: "You have no activities in your plan.", message: "Add activities to generate a plan.", preferredStyle: .alert)
@@ -87,6 +88,14 @@ class PlanViewController: UIViewController {
         asvc.currentIndex = sender.index
         self.navigationController?.pushViewController(asvc, animated: true)
     }
+    
+    @IBAction func pressedDown() {
+        generateButton.backgroundColor = UIColor(red: 50/255, green: 100/255, blue: 255/255, alpha: 1)
+    }
+    
+    @IBAction func pressCancelled() {
+        generateButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
+    }
 }
 
 public class TapGesture: UITapGestureRecognizer {
@@ -95,12 +104,17 @@ public class TapGesture: UITapGestureRecognizer {
 
 extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count + 1 // plus button cell beneath each category cell
+        if(categories.count < 10) {
+            return categories.count + 1 // plus button cell beneath each category cell
+        } else {
+            return categories.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        if (row + 1 != tableView.numberOfRows(inSection: 0)) {
+        if (row + 1 != tableView.numberOfRows(inSection: 0) || categories.count == 10) {
             let cell = tableView.dequeueReusableCell(withIdentifier: BoxCellIdentifier, for: indexPath as IndexPath) as! CustomActivityCategoryTableViewCell
             cell.cellBackground.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
             cell.headerBackground.backgroundColor = UIColor(red: 0.21, green: 0.65, blue: 1.00, alpha: 1.00)
@@ -154,7 +168,6 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
