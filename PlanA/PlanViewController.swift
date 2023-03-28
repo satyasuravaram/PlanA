@@ -56,6 +56,14 @@ class PlanViewController: UIViewController {
         categories.insert("", at: index)
         durations.insert("", at: index)
         self.tableView.reloadData()
+        DispatchQueue.main.async {
+            var rowTo = categories.count
+            if (categories.count > 9) {
+                rowTo -= 1
+            }
+            let indexPath = IndexPath(row: rowTo, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     @IBAction func generateButtonPressed(_ sender: Any) {
