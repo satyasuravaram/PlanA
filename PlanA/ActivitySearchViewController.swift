@@ -81,10 +81,12 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
             cell.leftCategory.layer.borderColor = UIColor.lightGray.cgColor
             cell.leftCategory.layer.borderWidth = 2
             
-            cell.leftVStack.layer.cornerRadius = 10
+            cell.leftVStack.layer.cornerRadius = 8
             cell.leftVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             
             cell.leftCategoryLabel.text = currCatList[catIndex]
+            cell.leftCategory.image = UIImage(named: currCatList[catIndex])
+            cell.leftCategory.contentMode = .scaleAspectFill
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex
             tg.numberOfTapsRequired = 1
@@ -106,10 +108,12 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
             cell.rightCategory.layer.borderColor = UIColor.lightGray.cgColor
             cell.rightCategory.layer.borderWidth = 2
             
-            cell.rightVStack.layer.cornerRadius = 10
+            cell.rightVStack.layer.cornerRadius = 8
             cell.rightVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             
             cell.rightCategoryLabel.text = currCatList[catIndex+1]
+            cell.rightCategory.image = UIImage(named: currCatList[catIndex+1])
+            cell.rightCategory.contentMode = .scaleAspectFill
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex+1
             tg.numberOfTapsRequired = 1
