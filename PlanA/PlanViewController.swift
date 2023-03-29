@@ -132,6 +132,7 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             cell.activityNumber.textColor = .white
             cell.cellBackground.layer.cornerRadius = 10
             cell.selectActivity.font = UIFont(name: "Poppins", size: 17)
+            cell.selectActivity.textColor = .black
             if categories[activityNumber-1] == "" {
                 cell.selectActivity.text = "Press here to select an activity"
             } else {

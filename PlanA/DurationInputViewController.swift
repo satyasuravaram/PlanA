@@ -13,6 +13,7 @@ class DurationInputViewController: UIViewController {
     @IBOutlet var pageTitle: UILabel!
     @IBOutlet var duration: UIDatePicker!
     @IBOutlet var vStack: UIStackView!
+    @IBOutlet var text: UILabel!
     
     var activityName: String = ""
     var currentPlanIndex:Int!
@@ -25,7 +26,11 @@ class DurationInputViewController: UIViewController {
         pageTitle.textColor = .white
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         pageTitle.text = activityName
-        vStack.backgroundColor = .white
+        if self.traitCollection.userInterfaceStyle == .dark {
+            vStack.backgroundColor = .black
+        } else {
+            vStack.backgroundColor = .white
+        }
         view.sendSubviewToBack(vStack)
         
         // set up button

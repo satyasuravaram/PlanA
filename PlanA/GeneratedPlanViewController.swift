@@ -87,7 +87,11 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
-        vStack.backgroundColor = .white
+        if self.traitCollection.userInterfaceStyle == .dark {
+            vStack.backgroundColor = .black
+        } else {
+            vStack.backgroundColor = .white
+        }
         let width = vStack.bounds.size.width
         saveButton.frame = CGRectMake(0, 0, width-10, 100)
         
@@ -108,6 +112,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         // back button
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(savePlan)
         )
+        
+        // catch if user enters app
+        let notificationC = NotificationCenter.default
+        notificationC.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func appMovedToForeground() {
+        vStack.backgroundColor = tableView.backgroundColor
     }
     
     func generatePlan(catCount:[String:Int]) {
@@ -250,6 +262,8 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(cancelButton)
             
             self.present(alert, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -287,6 +301,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         // create alternating cells of activties and add buttons
         if(indexPath.row % 2 == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
+            cell.titleLabel.textColor = .black
             cell.titleLabel.text = activities[indexPath.row / 2].name
             var text = "For "
             let time = Int(activities[indexPath.row / 2].duration)
@@ -300,6 +315,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             if(minutes != 0) {
                 text = text + String(minutes) + " minutes"
             }
+            cell.durationLabel.textColor = .black
             cell.durationLabel.text = text
             cell.cellBackground.image = UIImage(named: "GrayBox")
             cell.cellBackground.layer.cornerRadius = 20

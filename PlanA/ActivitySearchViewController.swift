@@ -85,8 +85,10 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
             cell.leftVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             
             cell.leftCategoryLabel.text = currCatList[catIndex]
+            cell.leftCategoryLabel.textColor = .black
             cell.leftCategory.image = UIImage(named: currCatList[catIndex])
             cell.leftCategory.contentMode = .scaleAspectFill
+            
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex
             tg.numberOfTapsRequired = 1
@@ -104,6 +106,7 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
         if catIndex + 1 < currCatList.count {
             cell.rightCategory.isHidden = false
             cell.rightCategoryLabel.isHidden = false
+            cell.rightVStack.isHidden = false
             cell.rightCategory.layer.cornerRadius = 10
             cell.rightCategory.layer.borderColor = UIColor.lightGray.cgColor
             cell.rightCategory.layer.borderWidth = 2
@@ -112,8 +115,10 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
             cell.rightVStack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             
             cell.rightCategoryLabel.text = currCatList[catIndex+1]
+            cell.rightCategoryLabel.textColor = .black
             cell.rightCategory.image = UIImage(named: currCatList[catIndex+1])
             cell.rightCategory.contentMode = .scaleAspectFill
+            
             let tg = TapGesture(target: self, action: #selector(categoryTapped(_:)))
             tg.index = catIndex+1
             tg.numberOfTapsRequired = 1
@@ -129,6 +134,7 @@ extension ActivitySearchViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             cell.rightCategory.isHidden = true
             cell.rightCategoryLabel.isHidden = true
+            cell.rightVStack.isHidden = true
         }
 
         cell.selectionStyle = .none
