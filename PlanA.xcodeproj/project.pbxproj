@@ -193,14 +193,15 @@
 				233FD72F29B14C6A00D652BA /* Model */,
 				641748CB298D8E3B0070A44F /* AppDelegate.swift */,
 				641748CD298D8E3B0070A44F /* SceneDelegate.swift */,
+				23D107E229D254DB009E38A3 /* AnimationViewController.swift */,
 				641748CF298D8E3B0070A44F /* HomeViewController.swift */,
 				23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */,
 				23A9E21729A9701B0086E1C4 /* DetailsViewController.swift */,
 				23A9E21929A9703B0086E1C4 /* PlanViewController.swift */,
 				23A9E21B29A970590086E1C4 /* ActivitySearchViewController.swift */,
+				23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */,
 				23A9E21D29A970AB0086E1C4 /* GeneratedPlanViewController.swift */,
 				2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */,
-				23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */,
 				641748D1298D8E3B0070A44F /* Main.storyboard */,
 				641748D9298D8E400070A44F /* LaunchScreen.storyboard */,
 				2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */,
@@ -210,7 +211,6 @@
 				641748D7298D8E400070A44F /* Assets.xcassets */,
 				23A9E24B29AAE9EF0086E1C4 /* Font */,
 				641748D4298D8E3B0070A44F /* PlanA.xcdatamodeld */,
-				23D107E229D254DB009E38A3 /* AnimationViewController.swift */,
 			);
 			path = PlanA;
 			sourceTree = "<group>";
@@ -553,7 +553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2C37UB25C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlanA/Info.plist;
@@ -565,12 +565,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PlanA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aidanPetratos.PlanA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -585,7 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2C37UB25C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlanA/Info.plist;
@@ -597,12 +598,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PlanA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aidanPetratos.PlanA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
