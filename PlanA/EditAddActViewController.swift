@@ -26,18 +26,22 @@ class EditAddActViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         // set background and title color
         pageTitle.textColor = .white
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
-        vStack.backgroundColor = .white
+        if self.traitCollection.userInterfaceStyle == .dark {
+            vStack.backgroundColor = .black
+        } else {
+            vStack.backgroundColor = .white
+        }
         view.sendSubviewToBack(vStack)
         
         // set up button
         doneButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         doneButton.layer.cornerRadius = 10
         doneButton.setTitleColor(.white, for: .normal)
+        doneButton.titleLabel?.textColor = .white
         
         // add done button to keyboard
         let keypadToolbar: UIToolbar = UIToolbar()
