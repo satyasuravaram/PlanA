@@ -46,7 +46,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         // TODO: if back button is pressed and a plan object was created but did not reach generated plan page, then delete plan object so it does not show up blank on saved plans page
-        if(!leavePage) {
+        if(!leavePage && plan.name == nil) {
             self.context.delete(plan)
         }
     }
