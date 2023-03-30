@@ -792,8 +792,30 @@
                                     <constraint firstAttribute="height" constant="80" id="DnF-Jv-rdR"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50F-qo-ESM">
+                                <rect key="frame" x="328" y="715.33333333333337" width="50" height="34.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="agA-fG-50j"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="refreshButtonPressed" destination="aqb-40-4Se" eventType="touchUpInside" id="ahW-2W-r3F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8m-km-jeT">
+                                <rect key="frame" x="15" y="715.33333333333337" width="50" height="34.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="48Y-oe-VuF"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="homekit" catalog="system"/>
+                                <connections>
+                                    <action selector="homeButtonPressed" destination="aqb-40-4Se" eventType="touchUpInside" id="4WN-fR-66p"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXb-cq-h33">
-                                <rect key="frame" x="20" y="705" width="353" height="55"/>
+                                <rect key="frame" x="80" y="705" width="233" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="FbD-Nq-Cbr"/>
                                 </constraints>
@@ -820,10 +842,11 @@
                         <viewLayoutGuide key="safeArea" id="n9k-sr-okZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="h8m-km-jeT" firstAttribute="centerY" secondItem="OXb-cq-h33" secondAttribute="centerY" id="09r-Y3-FZt"/>
                             <constraint firstItem="pkh-3T-aNR" firstAttribute="leading" secondItem="n9k-sr-okZ" secondAttribute="leading" id="3CA-ju-qxh"/>
+                            <constraint firstItem="h8m-km-jeT" firstAttribute="leading" secondItem="n9k-sr-okZ" secondAttribute="leading" constant="15" id="3ji-0Q-Ffd"/>
                             <constraint firstItem="mOc-Vd-zIw" firstAttribute="top" secondItem="n9k-sr-okZ" secondAttribute="top" constant="-25" id="4It-Mz-9Kf"/>
                             <constraint firstItem="pkh-3T-aNR" firstAttribute="top" secondItem="S7z-rJ-rN9" secondAttribute="bottom" id="4Tj-Dc-1ck"/>
-                            <constraint firstItem="OXb-cq-h33" firstAttribute="leading" relation="lessThanOrEqual" secondItem="n9k-sr-okZ" secondAttribute="leading" constant="20" id="5sp-PP-I8s"/>
                             <constraint firstItem="n9k-sr-okZ" firstAttribute="trailing" secondItem="W8s-PW-jkn" secondAttribute="trailing" constant="100" id="8z8-aT-a9f"/>
                             <constraint firstItem="n9k-sr-okZ" firstAttribute="bottom" secondItem="ptf-nc-lRj" secondAttribute="bottom" constant="10" id="C49-SM-2Uy"/>
                             <constraint firstItem="W8s-PW-jkn" firstAttribute="top" secondItem="OXb-cq-h33" secondAttribute="bottom" constant="20" id="EKB-vU-Iit"/>
@@ -834,10 +857,13 @@
                             <constraint firstItem="n9k-sr-okZ" firstAttribute="trailing" secondItem="pkh-3T-aNR" secondAttribute="trailing" id="Tq6-Rt-BIw"/>
                             <constraint firstItem="W8s-PW-jkn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ptf-nc-lRj" secondAttribute="trailing" constant="8" symbolic="YES" id="ViI-y3-bnh"/>
                             <constraint firstItem="ptf-nc-lRj" firstAttribute="top" secondItem="pkh-3T-aNR" secondAttribute="bottom" constant="5" id="Y4q-db-1OF"/>
-                            <constraint firstItem="n9k-sr-okZ" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="OXb-cq-h33" secondAttribute="trailing" constant="20" id="Y55-0p-Cya"/>
                             <constraint firstItem="S7z-rJ-rN9" firstAttribute="top" secondItem="mOc-Vd-zIw" secondAttribute="bottom" constant="2" id="ZXq-hq-Nf2"/>
                             <constraint firstItem="S7z-rJ-rN9" firstAttribute="leading" secondItem="n9k-sr-okZ" secondAttribute="leading" id="amZ-pE-NMJ"/>
+                            <constraint firstItem="n9k-sr-okZ" firstAttribute="trailing" secondItem="50F-qo-ESM" secondAttribute="trailing" constant="15" id="bKF-aG-hfT"/>
                             <constraint firstItem="5N2-95-CuX" firstAttribute="centerY" secondItem="mOc-Vd-zIw" secondAttribute="centerY" id="bQT-U0-aay"/>
+                            <constraint firstItem="50F-qo-ESM" firstAttribute="leading" secondItem="OXb-cq-h33" secondAttribute="trailing" constant="15" id="dIB-rT-e99"/>
+                            <constraint firstItem="OXb-cq-h33" firstAttribute="leading" secondItem="h8m-km-jeT" secondAttribute="trailing" constant="15" id="dny-OX-qLC"/>
+                            <constraint firstItem="50F-qo-ESM" firstAttribute="centerY" secondItem="OXb-cq-h33" secondAttribute="centerY" id="gkM-Tr-mk7"/>
                             <constraint firstItem="W8s-PW-jkn" firstAttribute="top" secondItem="pkh-3T-aNR" secondAttribute="bottom" constant="5" id="kV6-yZ-8um"/>
                             <constraint firstItem="Zkk-ef-iHP" firstAttribute="centerY" secondItem="mOc-Vd-zIw" secondAttribute="centerY" id="kqk-DB-R4f"/>
                             <constraint firstItem="6BH-hc-REj" firstAttribute="centerY" secondItem="mOc-Vd-zIw" secondAttribute="centerY" id="mOd-pu-Bat"/>
@@ -851,7 +877,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="bIR-B9-js9"/>
                     <connections>
-                        <outlet property="exportButton" destination="Zkk-ef-iHP" id="iOq-rd-A4m"/>
+                        <outlet property="exportButton" destination="50F-qo-ESM" id="yUh-9o-6cP"/>
+                        <outlet property="homeButton" destination="h8m-km-jeT" id="KKU-lt-Sns"/>
                         <outlet property="pageTitle" destination="mOc-Vd-zIw" id="U4Z-vF-cWz"/>
                         <outlet property="pencilEditImage" destination="6BH-hc-REj" id="llh-nD-geS"/>
                         <outlet property="planName" destination="5N2-95-CuX" id="ogp-Nq-xxU"/>
@@ -994,6 +1021,8 @@
         <image name="PlanALogo" width="596" height="290"/>
         <image name="PlusButton" width="50" height="50"/>
         <image name="PurplePlusButton" width="60" height="60"/>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
+        <image name="homekit" catalog="system" width="128" height="104"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">

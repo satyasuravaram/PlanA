@@ -18,6 +18,8 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var vStack: UIStackView!
     @IBOutlet var planName: UITextField!
     @IBOutlet var pencilEditImage: UIImageView!
+    @IBOutlet var homeButton: UIButton!
+    @IBOutlet var refreshButton: UIButton!
     
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -59,6 +61,10 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             activity.duration = Double(hours + minutes)
             activities.append(activity)
         }
+        
+        // populate plan object
+        plan.name = "Your Plan"
+        plan.numOfActivties = Int64(activities.count)
         
         // Generate plan
 //        generatePlan(catCount: catCount)
@@ -123,10 +129,6 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     func generatePlan(catCount:[String:Int]) {
-        
-        // populate plan object
-        plan.name = "Your Plan"
-        plan.numOfActivties = Int64(activities.count)
         
         // TODO: catCount.keys is randomly ordered. Fix to match ordering from Your Plan page.
         for cat in catCount.keys {
@@ -217,7 +219,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     @objc func appMovedToBackground() {
         if(!self.saved) {
-            let alert = UIAlertController(title: "Do you want to save this plan before you exit.", message: "It can be revisted under Saved Plans", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Do you want to save this plan before you exit?", message: "It can be revisted under Saved Plans.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
                 print("save")
                 self.saved = true
@@ -229,9 +231,10 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             alert.addAction(okButton)
-            let cancelButton = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
                 print("cancel")
                 self.saved = false
+                self.context.delete(plan)
             }
             alert.addAction(cancelButton)
             
@@ -241,7 +244,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     @objc func savePlan() {
         if(!self.saved) {
-            let alert = UIAlertController(title: "Do you want to save this plan before you exit.", message: "It can be revisted under Saved Plans", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Do you want to save this plan before you exit?", message: "It can be revisted under Saved Plans.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
                 print("save")
                 self.saved = true
@@ -254,9 +257,10 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
-            let cancelButton = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
                 print("cancel")
                 self.saved = false
+                self.context.delete(plan)
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(cancelButton)
@@ -265,6 +269,39 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @IBAction func homeButtonPressed() {
+        if(!self.saved) {
+            let alert = UIAlertController(title: "Do you want to save this plan before you return to the home screen?", message: "It can be revisted under Saved Plans.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
+                print("save")
+                self.saved = true
+                do {
+                    try self.context.save()
+                }
+                catch {
+                    print("Issue saving core data")
+                }
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            alert.addAction(okButton)
+            let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
+                print("cancel")
+                self.saved = false
+                self.context.delete(plan)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            alert.addAction(cancelButton)
+            
+            self.present(alert, animated: true)
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    @IBAction func refreshButtonPressed() {
+        print("REFRESH")
     }
     
     @IBAction func plusButtonPressed() {
