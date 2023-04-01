@@ -61,8 +61,8 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Generate plan
-//        generatePlan(catCount: catCount)
-        
+        generatePlan(catCount: catCount)
+                
         // Do any additional setup after loading the view.
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
@@ -122,26 +122,50 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             getNearbyPlaces(query: cat, radius: plan.radius, location: locMan.location!, completion: { places in
                 let count = catCount[cat]!
                 
+                // TODO: Alert user that 0 (or not enough) places exist with given radius
+                if (count > places.count) {
+                    return
+                }
+                
                 let result = activities.filter { act in
                     act.categoryName == cat
                 }
                 
+                // Get random indices
+                var randSet = Set<Int>()
+                print("places count: \(places.count)")
+                while randSet.count < count {
+                    let rand = Int.random(in: 0..<places.count)
+                    if randSet.contains(rand) {
+                      continue
+                    }
+                    randSet.insert(rand)
+                }
+                print(randSet)
+                
                 // TODO: need to refine list by business hours to chekc if activity is available
                 // TODO: randomly select activities instead of choosing from beginning of array
                 for index in 0..<count {
-                    let place = places[index]
-//                    // Populate activities
-//                    let activity:Activity = Activity(context: self.context)
-                    // TODO: populate other activity fields here (business hours, description, etc)
-//                    activity.name = place["name"] as? String
-//                    activity.location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
-//                    activities.append(activity)
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-                    
+                    let i = randSet.popFirst()!
+                    print(i)
+                    let place = places[i]
+                    let placeID = place["placeID"] as! String
                     result[index].name = place["name"] as? String
                     result[index].location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
+                    // get business hours
+                    DispatchQueue.main.async {
+                        getPlaceByID(placeID: placeID, completion: { place in
+                            print("The selected place is: \(place.name ?? "None")")
+                            print(place.placeID!)
+                            var day = Calendar.current.component(.weekday, from: Date.now) - 2
+                            if day == -1 {
+                                day = 6
+                            }
+                            let bHours = place.openingHours!.weekdayText![day]
+                            result[index].businessHours = bHours
+                            self.tableView.reloadData()
+                        })
+                    }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -288,6 +312,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         if(indexPath.row % 2 == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
             cell.titleLabel.text = activities[indexPath.row / 2].name
+            cell.businessHours.text = activities[indexPath.row / 2].businessHours
             var text = "For "
             let time = Int(activities[indexPath.row / 2].duration)
             let hours = Int(time) / 3600
