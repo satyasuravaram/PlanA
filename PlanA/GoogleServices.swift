@@ -14,10 +14,10 @@ let nearbySearchURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/j
 // Returns Place Details given Google Place ID
 public func getPlaceByID(
     placeID:String,
-    completion: @escaping (Result<[String], Error>) -> Void
+    completion: @escaping (GMSPlace) -> Void
 ) {
     // harcoded
-    let placeID = "ChIJEZ7agoK1RIYRIZlMB_YtUc8"
+    let placeID = placeID
 
     // Specify the place data types to return.
     let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
@@ -33,11 +33,13 @@ public func getPlaceByID(
         return
       }
       if let place = place {
-          print("The selected place is: \(place.name ?? "None")")
-          print(place.placeID!)
-          print(place.openingHours!)
-          print(place.priceLevel)
-          print(place.rating)
+          completion(place)
+//          print("The selected place is: \(place.name ?? "None")")
+//          print(place.placeID!)
+//          print(place.openingHours?.weekdayText)
+//          print(place.openingHours!)
+//          print(place.priceLevel)
+//          print(place.rating)
       }
     })
 }
@@ -72,6 +74,8 @@ public func getNearbyPlaces(
             let json = try JSONSerialization.jsonObject(with: data!, options: [JSONSerialization.ReadingOptions.fragmentsAllowed])
             let result = json as! [String:Any]
             let places = result["results"] as! NSArray
+            print(places)
+            print(places.count)
             var placesRet:[[String:Any]] = []
             for place in places {
                 var placeInfo:[String:Any] = [:]
