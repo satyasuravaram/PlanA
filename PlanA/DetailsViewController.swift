@@ -16,6 +16,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startDateTime: UIDatePicker!
     @IBOutlet weak var radius: UITextField!
     @IBOutlet weak var startPlanButton: UIButton!
+    @IBOutlet weak var helpButton: UIButton!
     
     var leavePage = false
     
@@ -46,8 +47,10 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         // TODO: if back button is pressed and a plan object was created but did not reach generated plan page, then delete plan object so it does not show up blank on saved plans page
-        if(!leavePage && plan.name == nil) {
-            self.context.delete(plan)
+        if(!leavePage && context.hasChanges) {
+            if(plan.name == nil) {
+                self.context.delete(plan)
+            }
         }
     }
     
@@ -75,6 +78,13 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func startDateTimeChanged(_ sender: Any) {
         print(startDateTime.date.description)
+    }
+    
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "How to create a plan:", message: "1) Enter the date and time you want to start this plan and the radius to search for activties around your current location.\n2) Click 'Start Plan' to begin building your plan. \n3) Select activities you are interested in, then press generate to create your plan.\n4) You can edit, delete, and reorder your activites to create the perfect plan.", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
     }
     
     

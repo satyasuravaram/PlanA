@@ -125,6 +125,10 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
         if (row + 1 != tableView.numberOfRows(inSection: 0) || categories.count == 10) {
             let cell = tableView.dequeueReusableCell(withIdentifier: BoxCellIdentifier, for: indexPath as IndexPath) as! CustomActivityCategoryTableViewCell
             cell.cellBackground.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+            cell.cellBackground.image = nil
+            cell.selectActivity.backgroundColor = .none
+            cell.cellBackground.layer.borderColor = UIColor.lightGray.cgColor
+            cell.cellBackground.layer.borderWidth = 2
             cell.headerBackground.backgroundColor = UIColor(red: 0.21, green: 0.65, blue: 1.00, alpha: 1.00)
             let activityNumber = row + 1
             cell.activityNumber.text = "Activity #\(activityNumber)"
@@ -136,17 +140,22 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             if categories[activityNumber-1] == "" {
                 cell.selectActivity.text = "Press here to select an activity"
             } else {
-                var text = String(categories[activityNumber-1] + "\nDuration: ")
+                cell.cellBackground.image = UIImage(named: categories[activityNumber-1])
+                cell.cellBackground.contentMode = .scaleAspectFill
+                cell.cellBackground.layer.borderColor = UIColor.lightGray.cgColor
+                cell.cellBackground.layer.borderWidth = 2
+                var text = ""//String(categories[activityNumber-1] + "\nDuration: ")
                 let durationArr = durations[activityNumber-1].split(separator: ":")
                 if(Int(durationArr[0]) == 1) {
-                    text = text + durationArr[0] + " hour "
+                    text = text + durationArr[0] + " hr "
                 } else if(Int(durationArr[0]) != 0) {
-                    text = text + durationArr[0] + " hours "
+                    text = text + durationArr[0] + " hrs "
                 }
                 if(Int(durationArr[1]) != 0) {
-                    text = text + durationArr[1] + " minutes"
+                    text = text + durationArr[1] + " mins"
                 }
-                cell.selectActivity.text = text
+                cell.activityNumber.text = "\(activityNumber). " + categories[activityNumber-1] + " - " + text
+                cell.selectActivity.text = ""
             }
           
 //            let path = UIBezierPath(roundedRect:cell.headerBackground.bounds,
@@ -157,7 +166,7 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
 //            cell.headerBackground.layer.mask = maskLayer
             
             cell.headerBackground.clipsToBounds = true
-            cell.headerBackground.layer.cornerRadius = 10
+            cell.headerBackground.layer.cornerRadius = 8
             cell.headerBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             
             cell.selectionStyle = .none
