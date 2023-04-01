@@ -25,6 +25,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var saved = false
+    var planChanged = false
     
     // selected plan from saved plans
     var selectedSavedPlan: Plan!
@@ -100,6 +101,8 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
         let width = vStack.bounds.size.width
         saveButton.frame = CGRectMake(0, 0, width-10, 100)
+        
+        refreshButton.isEnabled = planChanged
         
         // set up labels
         timeLabel.textColor = .white

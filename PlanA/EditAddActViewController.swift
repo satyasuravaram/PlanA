@@ -63,7 +63,7 @@ class EditAddActViewController: UIViewController {
             doneButton.titleLabel?.text = "Done"
             doneButton.titleLabel?.textColor = .white
             activityLabel.text = "Activity:\t" + activityName
-            addressLabel.text = "Address:\t" + address
+            addressLabel.text = "Location:\t" + address
             duration.countDownDuration = TimeInterval(seconds)
         } else {
             // add activity view
