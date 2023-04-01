@@ -21,8 +21,13 @@ class EditAddActViewController: UIViewController {
 
     var editActivity: Bool = false
     var activityName: String = ""
+    var actDesc: String = ""
     var address: String = ""
     var seconds: Int!
+    var index: Int!
+    
+    // reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +64,7 @@ class EditAddActViewController: UIViewController {
             pageTitle.text = "Edit Activity"
             chosenAddress.isHidden = true
             chosenActivityName.isHidden = true
-            directionsButton.isHidden = false
+            directionsButton.isHidden = (actDesc == "Added Activity")
             doneButton.titleLabel?.text = "Done"
             doneButton.titleLabel?.textColor = .white
             activityLabel.text = "Activity:\t" + activityName
@@ -82,6 +87,27 @@ class EditAddActViewController: UIViewController {
 
     @IBAction func doneButtonPressed() {
         print("finsihed")
+        if(editActivity) {
+            // modify activity in plan
+            if(seconds != Int(duration.countDownDuration)) {
+                let activityMod = activities[index]
+                activityMod.duration = Double(duration.countDownDuration)
+                planDidChange = true
+            }
+        } else {
+            // add activity into plan
+            let activity:Activity = Activity(context: self.context)
+            activity.name = (chosenActivityName.text == "") ? "Added Activity" : chosenActivityName.text
+            activity.location = chosenAddress.text
+            activity.duration = Double(duration.countDownDuration)
+            activity.actDescription = "Added Activity"
+            let newIndex = (index-1)/2 + 1
+            activities.insert(activity, at: newIndex)
+            plan.listActs = activities
+            plan.numOfActivties += 1
+            planDidChange = true
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func directionsButtonPressed() {

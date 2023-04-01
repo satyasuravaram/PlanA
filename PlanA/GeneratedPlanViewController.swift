@@ -7,6 +7,8 @@
 
 import UIKit
 
+public var planDidChange = false
+
 class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var tableView: UITableView!
@@ -25,7 +27,6 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var saved = false
-    var planChanged = false
     
     // selected plan from saved plans
     var selectedSavedPlan: Plan!
@@ -69,7 +70,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         
         // Generate plan
         generatePlan(catCount: catCount)
-                
+
         // Do any additional setup after loading the view.
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
@@ -102,7 +103,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         let width = vStack.bounds.size.width
         saveButton.frame = CGRectMake(0, 0, width-10, 100)
         
-        refreshButton.isEnabled = planChanged
+        refreshButton.isEnabled = planDidChange
         
         // set up labels
         timeLabel.textColor = .white
@@ -132,7 +133,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     func generatePlan(catCount:[String:Int]) {
-        
+        print("CatCount: ", catCount.description)
         // TODO: catCount.keys is randomly ordered. Fix to match ordering from Your Plan page.
         for cat in catCount.keys {
             // Call API for each category, store results
@@ -143,7 +144,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 if (count > places.count) {
                     return
                 }
-                
+
                 let result = activities.filter { act in
                     act.categoryName == cat
                 }
@@ -261,7 +262,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
                 print("cancel")
                 self.saved = false
-                self.context.delete(plan)
+                //self.context.delete(plan)
             }
             alert.addAction(cancelButton)
             
@@ -287,7 +288,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
                 print("cancel")
                 self.saved = false
-                self.context.delete(plan)
+                //self.context.delete(plan)
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(cancelButton)
@@ -329,13 +330,16 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func refreshButtonPressed() {
         print("REFRESH")
+        planDidChange = false
+        refreshButton.isEnabled = false
     }
     
-    @IBAction func plusButtonPressed() {
-        print("Plus button was PRESSED")
+    func plusButtonPressed(index:Int) {
+        print("Plus button was PRESSED at index: ", index)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
         easvc.editActivity = false
+        easvc.index = index
         self.navigationController?.pushViewController(easvc, animated: true)
     }
     
@@ -350,6 +354,13 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
         catch {
             print("Issue saving core data")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshButton.isEnabled = planDidChange
+        if(planDidChange) {
+            tableView.reloadData()
         }
     }
 }
@@ -367,19 +378,35 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
             cell.titleLabel.textColor = .black
             cell.titleLabel.text = activities[indexPath.row / 2].name
+            
             cell.businessHours.text = activities[indexPath.row / 2].businessHours
-            var text = "For "
-            let time = Int(activities[indexPath.row / 2].duration)
-            let hours = Int(time) / 3600
-            let minutes = Int(time) / 60 % 60
-            if(hours == 1) {
-                text = text + String(hours) + " hour "
-            } else if(hours != 0) {
-                text = text + String(hours) + " hours "
+//            var text = "For "
+//            let time = Int(activities[indexPath.row / 2].duration)
+//            let hours = Int(time) / 3600
+//            let minutes = Int(time) / 60 % 60
+//            if(hours == 1) {
+//                text = text + String(hours) + " hour "
+//            } else if(hours != 0) {
+//                text = text + String(hours) + " hours "
+//            }
+//            if(minutes != 0) {
+//                text = text + String(minutes) + " minutes"
+//            }
+            
+            var text = ""
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mm a"
+            var activityTime = plan.startDateTime
+            var i = 0
+            while (i < (indexPath.row / 2)) {
+                activityTime = activityTime?.addingTimeInterval(TimeInterval(activities[i].duration))
+                i += 1
             }
-            if(minutes != 0) {
-                text = text + String(minutes) + " minutes"
-            }
+            let result = dateFormatter.string(from: activityTime!)
+            text.append(result + " - ")
+            let after = activityTime?.addingTimeInterval(TimeInterval(activities[indexPath.row / 2].duration))
+            text.append(dateFormatter.string(from: after!))
+            
             cell.durationLabel.textColor = .black
             cell.durationLabel.text = text
             cell.cellBackground.image = UIImage(named: "GrayBox")
@@ -388,12 +415,15 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addCell", for: indexPath) as! CustomAddTableViewCell
             cell.selectionStyle = .none
+            cell.index = indexPath.row
+            cell.insertBox = { index in
+                self.plusButtonPressed(index: index)
+            }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // create alert
         let cell = tableView.cellForRow(at: indexPath)
         if(cell is CustomActivityTableViewCell) {
             tableView.deselectRow(at: indexPath, animated: true)
@@ -404,10 +434,13 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             // set address
             easvc.address = activities[indexPath.row/2].location!
             // set proper duration
-            let durationArr = durations[indexPath.row/2].split(separator: ":")
-            let hours = Int(durationArr[0])! * 60 * 60
-            let minutes = Int(durationArr[1])! * 60
-            easvc.seconds = hours + minutes
+            let time = Int(activities[indexPath.row / 2].duration)
+//            let durationArr = durations[indexPath.row/2].split(separator: ":")
+//            let hours = Int(durationArr[0])! * 60 * 60
+//            let minutes = Int(durationArr[1])! * 60
+            easvc.seconds = time//hours + minutes
+            easvc.index = indexPath.row/2
+            easvc.actDesc = activities[indexPath.row/2].actDescription!
             self.navigationController?.pushViewController(easvc, animated: true)
         }
     }
@@ -419,6 +452,10 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
                 
                 activities.remove(at: indexPath.row / 2)
+                plan.numOfActivties -= 1
+                plan.listActs = activities
+                planDidChange = true
+                self.refreshButton.isEnabled = true
                 self.tableView.reloadData()
             }
             return UISwipeActionsConfiguration(actions: [action])
@@ -435,7 +472,8 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         let item = activities[sourceIndexPath.row / 2]
         activities.remove(at: sourceIndexPath.row / 2)
         activities.insert(item, at: destinationIndexPath.row / 2)
-        
+        planDidChange = true
+        self.refreshButton.isEnabled = true
         self.tableView.reloadData()
     }
 }
