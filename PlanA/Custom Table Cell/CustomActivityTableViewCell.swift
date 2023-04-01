@@ -12,8 +12,8 @@ class CustomActivityTableViewCell: UITableViewCell {
     @IBOutlet var cellBackground: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var durationLabel: UILabel!
-    
-//    override func awakeFromNib() {
+    @IBOutlet weak var businessHours: UILabel!
+    //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
 //    }
