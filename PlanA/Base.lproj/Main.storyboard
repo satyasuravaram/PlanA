@@ -145,7 +145,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="uZD-4g-Ev9">
-                                <rect key="frame" x="121.66666666666669" y="218" width="225" height="34.333333333333343"/>
+                                <rect key="frame" x="141.66666666666666" y="218" width="224.99999999999997" height="34.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="hcg-R7-lRa"/>
                                 </constraints>
@@ -170,6 +170,7 @@
                             <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" secondItem="Rqb-x4-f9O" secondAttribute="trailing" constant="15" id="1cF-Ex-1rI"/>
                             <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" secondItem="seK-1t-HjF" secondAttribute="trailing" constant="20" id="1fq-w6-4WW"/>
                             <constraint firstItem="bPt-W5-C8d" firstAttribute="centerX" secondItem="Tss-hE-FcF" secondAttribute="centerX" id="8uq-cW-ser"/>
+                            <constraint firstItem="TKD-33-WD8" firstAttribute="leading" secondItem="uZD-4g-Ev9" secondAttribute="leading" constant="20" id="BYw-mn-7NC"/>
                             <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TKD-33-WD8" secondAttribute="trailing" symbolic="YES" id="BlB-rh-6qZ"/>
                             <constraint firstItem="TKD-33-WD8" firstAttribute="centerY" secondItem="27W-fB-7xy" secondAttribute="centerY" id="E0p-QE-HRq"/>
                             <constraint firstItem="HJb-ah-GP4" firstAttribute="top" secondItem="Tss-hE-FcF" secondAttribute="top" id="GLk-ul-j0S"/>
@@ -182,7 +183,6 @@
                             <constraint firstItem="e7b-od-xJO" firstAttribute="bottom" secondItem="seK-1t-HjF" secondAttribute="bottom" constant="55" id="WMZ-jm-ThP"/>
                             <constraint firstItem="J18-a4-Bbk" firstAttribute="top" secondItem="HJb-ah-GP4" secondAttribute="bottom" constant="85" id="daM-gb-XX1"/>
                             <constraint firstItem="HJb-ah-GP4" firstAttribute="leading" secondItem="e7b-od-xJO" secondAttribute="leading" id="ffe-Ok-jc3"/>
-                            <constraint firstItem="27W-fB-7xy" firstAttribute="trailing" secondItem="uZD-4g-Ev9" secondAttribute="leading" constant="20" id="gct-0C-dWH"/>
                             <constraint firstItem="TKD-33-WD8" firstAttribute="leading" secondItem="27W-fB-7xy" secondAttribute="trailing" constant="20" id="hfG-Dr-Z1s"/>
                             <constraint firstItem="EEh-mQ-qbE" firstAttribute="trailing" secondItem="e7b-od-xJO" secondAttribute="trailing" id="jbR-zc-aH1"/>
                             <constraint firstItem="27W-fB-7xy" firstAttribute="leading" secondItem="J18-a4-Bbk" secondAttribute="leading" id="kQn-a3-Tgh"/>
@@ -771,7 +771,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="PlusButton"/>
                                                     <connections>
-                                                        <action selector="plusButtonPressed" destination="aqb-40-4Se" eventType="touchUpInside" id="1VL-sV-BSx"/>
+                                                        <action selector="addButtonPressed:" destination="Va9-js-vmd" eventType="touchUpInside" id="Qrw-TD-XkH"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -971,12 +971,12 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter activity name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEA-K9-rq9">
-                                <rect key="frame" x="120.33333333333331" y="125" width="163" height="34"/>
+                                <rect key="frame" x="119.66666666666669" y="125" width="163" height="34"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBJ-co-WEe">
-                                <rect key="frame" x="128" y="465" width="124" height="34"/>
+                                <rect key="frame" x="119.66666666666669" y="465" width="124" height="34"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -991,6 +991,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WBa-Su-38f" firstAttribute="centerX" secondItem="cwf-wc-oRl" secondAttribute="centerX" id="2sm-I4-RY0"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kRR-Nd-oh9" secondAttribute="trailing" constant="8" id="3ke-Ts-oRf"/>
                             <constraint firstItem="28d-FM-0Wa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xBJ-co-WEe" secondAttribute="trailing" symbolic="YES" id="5lh-xZ-4nd"/>
                             <constraint firstItem="xBJ-co-WEe" firstAttribute="top" secondItem="R8q-cl-aJZ" secondAttribute="bottom" constant="45" id="6VB-bQ-igQ"/>
                             <constraint firstItem="T5h-Nz-fdl" firstAttribute="leading" secondItem="kRR-Nd-oh9" secondAttribute="leading" id="6Zg-CD-p0g"/>
@@ -1000,17 +1001,18 @@
                             <constraint firstItem="WBa-Su-38f" firstAttribute="leading" secondItem="28d-FM-0Wa" secondAttribute="leading" constant="10" id="Bao-Vk-677"/>
                             <constraint firstItem="xBJ-co-WEe" firstAttribute="centerY" secondItem="T5h-Nz-fdl" secondAttribute="centerY" id="EQ7-gf-w6k"/>
                             <constraint firstItem="28d-FM-0Wa" firstAttribute="trailing" secondItem="usv-Gp-8b7" secondAttribute="trailing" id="LbZ-aE-8DQ"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T5h-Nz-fdl" secondAttribute="trailing" constant="-98" id="Qw7-vE-1Xv"/>
                             <constraint firstAttribute="bottom" secondItem="usv-Gp-8b7" secondAttribute="bottom" id="SgO-gz-etc"/>
                             <constraint firstItem="R8q-cl-aJZ" firstAttribute="leading" secondItem="Kfu-j3-sup" secondAttribute="trailing" constant="8" id="TG5-Dq-2BA"/>
                             <constraint firstItem="Kfu-j3-sup" firstAttribute="centerY" secondItem="R8q-cl-aJZ" secondAttribute="centerY" id="U3b-Oe-37H"/>
                             <constraint firstItem="R8q-cl-aJZ" firstAttribute="top" secondItem="SEA-K9-rq9" secondAttribute="bottom" constant="45" id="UHz-iG-C1g"/>
-                            <constraint firstItem="xBJ-co-WEe" firstAttribute="leading" secondItem="T5h-Nz-fdl" secondAttribute="trailing" constant="30" id="V9g-GB-sg0"/>
+                            <constraint firstItem="xBJ-co-WEe" firstAttribute="leading" secondItem="R8q-cl-aJZ" secondAttribute="leading" constant="10" id="WJd-AV-zTX"/>
                             <constraint firstItem="vUl-Be-xEn" firstAttribute="top" secondItem="cwf-wc-oRl" secondAttribute="top" constant="50" id="eiD-yE-OcR"/>
                             <constraint firstItem="usv-Gp-8b7" firstAttribute="top" secondItem="vUl-Be-xEn" secondAttribute="bottom" constant="10" id="ekE-uu-KSU"/>
                             <constraint firstItem="usv-Gp-8b7" firstAttribute="leading" secondItem="28d-FM-0Wa" secondAttribute="leading" id="f1Z-tc-pPI"/>
                             <constraint firstItem="28d-FM-0Wa" firstAttribute="bottom" secondItem="WBa-Su-38f" secondAttribute="bottom" constant="20" id="iBb-rl-rFf"/>
                             <constraint firstItem="kRR-Nd-oh9" firstAttribute="leading" secondItem="Kfu-j3-sup" secondAttribute="leading" id="lbr-qI-2kC"/>
-                            <constraint firstItem="SEA-K9-rq9" firstAttribute="leading" secondItem="kRR-Nd-oh9" secondAttribute="trailing" constant="30" id="oTg-fn-DeX"/>
+                            <constraint firstItem="R8q-cl-aJZ" firstAttribute="leading" secondItem="SEA-K9-rq9" secondAttribute="leading" constant="-10" id="msm-hw-yex"/>
                             <constraint firstItem="J47-WU-drN" firstAttribute="centerX" secondItem="cwf-wc-oRl" secondAttribute="centerX" id="qvb-rP-Gro"/>
                             <constraint firstItem="kRR-Nd-oh9" firstAttribute="leading" secondItem="28d-FM-0Wa" secondAttribute="leading" constant="25" id="rBX-uH-ZGC"/>
                             <constraint firstItem="J47-WU-drN" firstAttribute="top" secondItem="T5h-Nz-fdl" secondAttribute="bottom" constant="35" id="xOX-X6-AEp"/>

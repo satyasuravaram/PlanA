@@ -10,20 +10,21 @@ import UIKit
 class CustomAddTableViewCell: UITableViewCell {
 
     @IBOutlet var addButton: UIButton!
+    var insertBox: ((Int) -> ())?
+    var index:Int!
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 
-    // add a new activity to the plan
-//    @IBAction func addButtonPressed() {
-//        print("Add button was PRESSED")
-//    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        insertBox?(index)
+    }
 }
