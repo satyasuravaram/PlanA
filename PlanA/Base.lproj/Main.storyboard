@@ -727,21 +727,20 @@
                                                         <constraint firstAttribute="height" constant="100" id="z62-Ai-uZx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-bn-mcI">
-                                                    <rect key="frame" x="48" y="85" width="297" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-bn-mcI">
+                                                    <rect key="frame" x="48" y="88" width="297" height="24"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1z0-kX-aLs">
-                                                    <rect key="frame" x="48" y="35" width="36.666666666666657" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1z0-kX-aLs">
+                                                    <rect key="frame" x="48" y="34" width="36.666666666666657" height="24"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Business Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gls-An-B8h">
-                                                    <rect key="frame" x="48" y="63" width="205" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gls-An-B8h">
+                                                    <rect key="frame" x="48.000000000000007" y="59" width="74.666666666666686" height="14"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -753,9 +752,11 @@
                                                 <constraint firstItem="VNS-bn-mcI" firstAttribute="centerX" secondItem="gzg-Ac-QLw" secondAttribute="centerX" id="8uI-II-Kz6"/>
                                                 <constraint firstItem="gzg-Ac-QLw" firstAttribute="top" secondItem="B6U-I2-Z32" secondAttribute="topMargin" constant="10" id="Bcm-QX-Z9U"/>
                                                 <constraint firstItem="VNS-bn-mcI" firstAttribute="leading" secondItem="B6U-I2-Z32" secondAttribute="leadingMargin" constant="28" id="C9C-vj-p0K"/>
-                                                <constraint firstItem="VNS-bn-mcI" firstAttribute="top" secondItem="1z0-kX-aLs" secondAttribute="bottom" constant="10" id="bWC-eX-xk1"/>
-                                                <constraint firstItem="1z0-kX-aLs" firstAttribute="top" secondItem="B6U-I2-Z32" secondAttribute="topMargin" constant="31" id="byn-hv-sda"/>
+                                                <constraint firstItem="1z0-kX-aLs" firstAttribute="top" secondItem="gzg-Ac-QLw" secondAttribute="topMargin" constant="5" id="byn-hv-sda"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gzg-Ac-QLw" secondAttribute="bottom" constant="10" id="gZg-jT-aW7"/>
+                                                <constraint firstItem="Gls-An-B8h" firstAttribute="top" secondItem="1z0-kX-aLs" secondAttribute="bottom" constant="1" id="odW-yQ-DpP"/>
+                                                <constraint firstItem="Gls-An-B8h" firstAttribute="leading" secondItem="1z0-kX-aLs" secondAttribute="leading" id="of2-gv-fM1"/>
+                                                <constraint firstItem="gzg-Ac-QLw" firstAttribute="bottomMargin" secondItem="VNS-bn-mcI" secondAttribute="bottom" constant="1" id="xhn-i4-loS"/>
                                                 <constraint firstItem="gzg-Ac-QLw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1z0-kX-aLs" secondAttribute="trailing" symbolic="YES" id="z7M-y4-kXQ"/>
                                                 <constraint firstItem="gzg-Ac-QLw" firstAttribute="leading" secondItem="B6U-I2-Z32" secondAttribute="leadingMargin" constant="15" id="zMP-Uy-WJq"/>
                                             </constraints>

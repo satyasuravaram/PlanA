@@ -7,15 +7,16 @@
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plan" inverseName="listActivities" inverseEntity="Plan"/>
     </entity>
     <entity name="Plan" representedClassName="Plan" syncable="YES">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="listActs" optional="YES" attributeType="Transformable" customClassName="[Activity]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="numOfActivties" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="planDescription" optional="YES" attributeType="String"/>
         <attribute name="radius" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="listActivities" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Activity" inverseName="plan" inverseEntity="Activity"/>
     </entity>
 </model>

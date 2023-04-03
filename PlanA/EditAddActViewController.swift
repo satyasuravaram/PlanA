@@ -25,6 +25,7 @@ class EditAddActViewController: UIViewController {
     var address: String = ""
     var seconds: Int!
     var index: Int!
+    var didSelectPlan = false
     
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -70,6 +71,15 @@ class EditAddActViewController: UIViewController {
             activityLabel.text = "Activity:\t" + activityName
             addressLabel.text = "Location:\t" + address
             duration.countDownDuration = TimeInterval(seconds)
+            
+            if(didSelectPlan) {
+                doneButton.isHidden = true
+                duration.isEnabled = false
+            } else {
+                doneButton.isHidden = false
+                duration.isEnabled = true
+            }
+            
         } else {
             // add activity view
             pageTitle.text = "Add Activity"
@@ -93,6 +103,7 @@ class EditAddActViewController: UIViewController {
                 let activityMod = activities[index]
                 activityMod.duration = Double(duration.countDownDuration)
                 planDidChange = true
+                plan.listActivities = NSOrderedSet(array: activities)
             }
         } else {
             // add activity into plan
@@ -103,7 +114,8 @@ class EditAddActViewController: UIViewController {
             activity.actDescription = "Added Activity"
             let newIndex = (index-1)/2 + 1
             activities.insert(activity, at: newIndex)
-            plan.listActs = activities
+            plan.listActivities = NSOrderedSet(array: activities)
+            //plan.listActs = activities
             plan.numOfActivties += 1
             planDidChange = true
         }

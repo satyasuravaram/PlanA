@@ -36,63 +36,82 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         activities = []
         
-        // How many activities per category
-        var catCount:[String:Int] = [:]
-        for cat in categories {
-            if catCount.keys.contains(cat) {
-                catCount[cat]! += 1
-            } else {
-                catCount[cat] = 1
-            }
-        }
-        
         // TODO: can't regenerate plan if coming from saved plans, should just display
-//        if(didSelectPlan) {
-//
-//        } else {
-//
-//        }
-        
-        // set up activities
-        for (index, element) in categories.enumerated() {
-            let activity:Activity = Activity(context: self.context)
-            activity.categoryName = element
-            let durationArr = durations[index].split(separator: ":")
-            let hours = Int(durationArr[0])! * 60 * 60
-            let minutes = Int(durationArr[1])! * 60
-            activity.duration = Double(hours + minutes)
-            activities.append(activity)
+        if(didSelectPlan) {
+            // view a saved plan
+            print("SAVED PLAN IN MOTION")
+            activities = selectedSavedPlan.listActivities?.array as! [Activity]
+            print(activities.description)
+            pageTitle.text = selectedSavedPlan.name
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = .lightGray
+            pageTitle.isUserInteractionEnabled = false
+            pencilEditImage.isUserInteractionEnabled = false
+            pencilEditImage.isHidden = true
+            refreshButton.isEnabled = false
+            tableView.dragInteractionEnabled = false
+            saved = true
+            tableView.reloadData()
+        } else {
+            // How many activities per category
+            var catCount:[String:Int] = [:]
+            for cat in categories {
+                if catCount.keys.contains(cat) {
+                    catCount[cat]! += 1
+                } else {
+                    catCount[cat] = 1
+                }
+            }
+            
+            // set up activities
+            for (index, element) in categories.enumerated() {
+                let activity:Activity = Activity(context: self.context)
+                activity.categoryName = element
+                let durationArr = durations[index].split(separator: ":")
+                let hours = Int(durationArr[0])! * 60 * 60
+                let minutes = Int(durationArr[1])! * 60
+                activity.duration = Double(hours + minutes)
+                activity.actDescription = ""
+                activities.append(activity)
+            }
+            
+            // populate plan object
+            plan.name = "Your Plan"
+            plan.numOfActivties = Int64(activities.count)
+            
+            // Generate plan
+            generatePlan(catCount: catCount)
+            
+            pageTitle.isUserInteractionEnabled = true
+            pencilEditImage.isUserInteractionEnabled = true
+            pencilEditImage.isHidden = false
+            tableView.dragInteractionEnabled = true
+            refreshButton.isEnabled = planDidChange
+            
+            saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         }
         
-        // populate plan object
-        plan.name = "Your Plan"
-        plan.numOfActivties = Int64(activities.count)
-        
-        // Generate plan
-        generatePlan(catCount: catCount)
-
         // Do any additional setup after loading the view.
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         pageTitle.textColor = .white
         planName.isHidden = true
-        pencilEditImage.isHidden = false
+//        pencilEditImage.isHidden = false
         
         // edit plan name
-        pageTitle.isUserInteractionEnabled = true
+        //pageTitle.isUserInteractionEnabled = true
         let titleSelected : Selector = #selector(self.titleClicked)
         let tapGesture = UITapGestureRecognizer(target: self, action: titleSelected)
         tapGesture.numberOfTapsRequired = 1
         pageTitle.addGestureRecognizer(tapGesture)
         
-        pencilEditImage.isUserInteractionEnabled = true
+//        pencilEditImage.isUserInteractionEnabled = true
         let titleSelect : Selector = #selector(self.pencilClicked)
         let tapped = UITapGestureRecognizer(target: self, action: titleSelect)
         tapped.numberOfTapsRequired = 1
         pencilEditImage.addGestureRecognizer(tapped)
         
         // set up route button
-        saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
         if self.traitCollection.userInterfaceStyle == .dark {
@@ -103,7 +122,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         let width = vStack.bounds.size.width
         saveButton.frame = CGRectMake(0, 0, width-10, 100)
         
-        refreshButton.isEnabled = planDidChange
+//        refreshButton.isEnabled = planDidChange
         
         // set up labels
         timeLabel.textColor = .white
@@ -111,7 +130,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         
         // table view
         tableView.separatorStyle = .none
-        tableView.dragInteractionEnabled = true
+//        tableView.dragInteractionEnabled = true
         tableView.dataSource = self
         tableView.dragDelegate = self
         
@@ -190,7 +209,8 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         }
-        plan.listActs = activities
+        plan.listActivities = NSOrderedSet(array: activities)
+        //plan.listActs = activities
     }
         
     // replace title label with text field
@@ -234,7 +254,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             activityItems: [
                 shareText
             ],
-            applicationActivities: [CustomShareActivity()]
+            applicationActivities: (didSelectPlan || saved) ? nil : [CustomShareActivity()]
         )
         
         // ipad support
@@ -329,6 +349,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func refreshButtonPressed() {
+        // TODO:
         print("REFRESH")
         planDidChange = false
         refreshButton.isEnabled = false
@@ -369,17 +390,20 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
 extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count * 2;
+        return (didSelectPlan) ? activities.count : activities.count * 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create alternating cells of activties and add buttons
-        if(indexPath.row % 2 == 0) {
+        if(indexPath.row % 2 == 0 || didSelectPlan) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actCell", for: indexPath) as! CustomActivityTableViewCell
-            cell.titleLabel.textColor = .black
-            cell.titleLabel.text = activities[indexPath.row / 2].name
+            //cell.titleLabel.textColor = .black
             
-            cell.businessHours.text = activities[indexPath.row / 2].businessHours
+            let row = (didSelectPlan) ? indexPath.row : (indexPath.row/2)
+            
+            cell.titleLabel.text = activities[row].name
+            
+            cell.businessHours.text = activities[row].businessHours
 //            var text = "For "
 //            let time = Int(activities[indexPath.row / 2].duration)
 //            let hours = Int(time) / 3600
@@ -396,20 +420,28 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             var text = ""
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "h:mm a"
-            var activityTime = plan.startDateTime
+            var activityTime = (didSelectPlan) ? selectedSavedPlan.startDateTime : plan.startDateTime
             var i = 0
-            while (i < (indexPath.row / 2)) {
+            while (i < (row)) {
                 activityTime = activityTime?.addingTimeInterval(TimeInterval(activities[i].duration))
                 i += 1
             }
             let result = dateFormatter.string(from: activityTime!)
             text.append(result + " - ")
-            let after = activityTime?.addingTimeInterval(TimeInterval(activities[indexPath.row / 2].duration))
+            let after = activityTime?.addingTimeInterval(TimeInterval(activities[row].duration))
             text.append(dateFormatter.string(from: after!))
             
-            cell.durationLabel.textColor = .black
+            //cell.durationLabel.textColor = .black
             cell.durationLabel.text = text
-            cell.cellBackground.image = UIImage(named: "GrayBox")
+            if(activities[row].actDescription == "Added Activity") {
+                cell.cellBackground.image = UIImage(named: "GrayBox")
+            } else {
+                cell.cellBackground.image = UIImage(named: activities[row].categoryName!)
+            }
+            cell.cellBackground.layer.opacity = 0.5
+            cell.cellBackground.layer.borderColor = UIColor.lightGray.cgColor
+            cell.cellBackground.layer.borderWidth = 2
+            cell.cellBackground.contentMode = .scaleAspectFill
             cell.cellBackground.layer.cornerRadius = 20
             return cell
         } else {
@@ -430,17 +462,19 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let easvc = storyboard.instantiateViewController(withIdentifier: "editaddact_vc") as! EditAddActViewController
             easvc.editActivity = true
-            easvc.activityName = activities[indexPath.row/2].name!
+            let row = (didSelectPlan) ? indexPath.row : (indexPath.row/2)
+            easvc.activityName = activities[row].name!
             // set address
-            easvc.address = activities[indexPath.row/2].location!
+            easvc.address = activities[row].location!
             // set proper duration
-            let time = Int(activities[indexPath.row / 2].duration)
+            let time = Int(activities[row].duration)
 //            let durationArr = durations[indexPath.row/2].split(separator: ":")
 //            let hours = Int(durationArr[0])! * 60 * 60
 //            let minutes = Int(durationArr[1])! * 60
             easvc.seconds = time//hours + minutes
-            easvc.index = indexPath.row/2
-            easvc.actDesc = activities[indexPath.row/2].actDescription!
+            easvc.index = row
+            easvc.actDesc = activities[row].actDescription!
+            easvc.didSelectPlan = didSelectPlan
             self.navigationController?.pushViewController(easvc, animated: true)
         }
     }
@@ -448,12 +482,13 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let cell = tableView.cellForRow(at: indexPath)
-        if(cell is CustomActivityTableViewCell) {
+        if(cell is CustomActivityTableViewCell && !didSelectPlan) {
             let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
                 
                 activities.remove(at: indexPath.row / 2)
                 plan.numOfActivties -= 1
-                plan.listActs = activities
+                plan.listActivities = NSOrderedSet(array: activities)
+                //plan.listActs = activities
                 planDidChange = true
                 self.refreshButton.isEnabled = true
                 self.tableView.reloadData()
@@ -472,6 +507,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         let item = activities[sourceIndexPath.row / 2]
         activities.remove(at: sourceIndexPath.row / 2)
         activities.insert(item, at: destinationIndexPath.row / 2)
+        plan.listActivities = NSOrderedSet(array: activities)
         planDidChange = true
         self.refreshButton.isEnabled = true
         self.tableView.reloadData()
