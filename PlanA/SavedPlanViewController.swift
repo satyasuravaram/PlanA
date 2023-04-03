@@ -29,7 +29,6 @@ class SavedPlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         // set background and title color
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
@@ -62,7 +61,7 @@ class SavedPlanViewController: UIViewController {
     
     // get plans from core data
     func fetchPlans(sortOrder: Bool) {
-        let sort = (sortOrder) ? NSSortDescriptor(key: "name", ascending: true) : NSSortDescriptor(key: "dateCreated", ascending: true)
+        let sort = (sortOrder) ? NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare)) : NSSortDescriptor(key: "dateCreated", ascending: true)
         
         do {
             let request = Plan.fetchRequest()
@@ -111,21 +110,23 @@ extension SavedPlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // create alert
         let currentArray = (searching) ? searchPlans : items
-        let alert = UIAlertController(title: "Alert", message: currentArray![indexPath.row].name, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
-        alert.addAction(okButton)
-        self.present(alert, animated: true)
+//        let alert = UIAlertController(title: "Alert", message: currentArray![indexPath.row].name, preferredStyle: .alert)
+//        let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+//            tableView.deselectRow(at: indexPath, animated: true)
+//        }
+//        alert.addAction(okButton)
+//        self.present(alert, animated: true)
         
-//        // get selected plan
-//        let selectedPlan = currentArray![indexPath.row]
-//        // update generated plan view variables
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let gpvc = storyboard.instantiateViewController(withIdentifier: "generatedplan_vc") as! GeneratedPlanViewController
-//        gpvc.selectedSavedPlan = selectedPlan
-//        gpvc.didSelectPlan = true
-//        self.navigationController?.pushViewController(gpvc, animated: true)
+        // get selected plan
+        let selectedPlan = currentArray![indexPath.row]
+        print("startDateTime: ", selectedPlan.startDateTime!)
+        // update generated plan view variables
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gpvc = storyboard.instantiateViewController(withIdentifier: "generatedplan_vc") as! GeneratedPlanViewController
+        gpvc.selectedSavedPlan = selectedPlan
+        gpvc.didSelectPlan = true
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController?.pushViewController(gpvc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
