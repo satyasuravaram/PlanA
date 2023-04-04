@@ -2,7 +2,7 @@
 //  Activity+CoreDataProperties.swift
 //  PlanA
 //
-//  Created by Aiden Petratos on 4/2/23.
+//  Created by Aiden Petratos on 4/3/23.
 //
 //
 
@@ -22,6 +22,7 @@ extension Activity {
     @NSManaged public var duration: Double
     @NSManaged public var location: String?
     @NSManaged public var name: String?
+    @NSManaged public var timeSpan: String?
     @NSManaged public var plan: Plan?
 
 }

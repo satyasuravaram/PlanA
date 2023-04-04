@@ -249,12 +249,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     // create export pop over view
     @IBAction func exportButtonPressed() {
         // action items
-        let shareText = "Save or share your plan."
+        let shareText = "Share your plan.\n"
+        let planText = (didSelectPlan) ? selectedSavedPlan.getPlanActivties() : plan.getPlanActivties()
         let sharePlan = UIActivityViewController(
             activityItems: [
-                shareText
+                shareText,
+                planText
             ],
-            applicationActivities: (didSelectPlan || saved) ? nil : [CustomShareActivity()]
+            applicationActivities: nil
         )
         
         // ipad support
@@ -349,10 +351,18 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func refreshButtonPressed() {
-        // TODO:
-        print("REFRESH")
-        planDidChange = false
-        refreshButton.isEnabled = false
+        let alert = UIAlertController(title: "You haved modified your plan.", message: "Press update to regenerate your plan with your changes.", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Update", style: .cancel) { (action) in
+            print("REFRESH")
+            planDidChange = false
+            self.refreshButton.isEnabled = false
+            // regenerate plan
+        }
+        alert.addAction(okButton)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .default)
+        alert.addAction(cancelButton)
+        
+        self.present(alert, animated: true)
     }
     
     func plusButtonPressed(index:Int) {
@@ -379,10 +389,25 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        refreshButton.isEnabled = planDidChange
+        refreshButton.isEnabled = (planDidChange && !didSelectPlan)
         if(planDidChange) {
             tableView.reloadData()
         }
+        stopsLabel.text = "Stops: " + String(activities.count)
+        var totalTime = 0
+        for act in activities {
+            totalTime += Int(act.duration)
+        }
+        let hours = totalTime / 3600
+        let minutes = totalTime / 60 % 60
+        var text = "Time: "
+        if(hours > 1) {
+            text.append(String(hours) + "hrs ")
+        } else if (hours == 1) {
+            text.append("1hr ")
+        }
+        text.append(String(minutes) + "mins")
+        timeLabel.text = text
     }
 }
 
@@ -430,6 +455,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             text.append(result + " - ")
             let after = activityTime?.addingTimeInterval(TimeInterval(activities[row].duration))
             text.append(dateFormatter.string(from: after!))
+            activities[row].timeSpan = text
             
             //cell.durationLabel.textColor = .black
             cell.durationLabel.text = text

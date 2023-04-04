@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		235B9F6529DB91E400932275 /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6129DB91E400932275 /* Activity+CoreDataClass.swift */; };
+		235B9F6629DB91E400932275 /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6229DB91E400932275 /* Activity+CoreDataProperties.swift */; };
+		235B9F6729DB91E400932275 /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6329DB91E400932275 /* Plan+CoreDataClass.swift */; };
+		235B9F6829DB91E500932275 /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6429DB91E400932275 /* Plan+CoreDataProperties.swift */; };
 		2397C5D329C6CF8D00C27E4C /* CustomShareActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */; };
 		2397C5D529CA373D00C27E4C /* EditAddActViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */; };
 		23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */; };
@@ -36,10 +40,6 @@
 		23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE44329C144EC002153B9 /* CustomActivityTableViewCell.swift */; };
 		23ADE44A29C147E5002153B9 /* CustomAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE44929C147E5002153B9 /* CustomAddTableViewCell.swift */; };
 		23D107E329D254DB009E38A3 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D107E229D254DB009E38A3 /* AnimationViewController.swift */; };
-		23E9904229DA194800EA55D6 /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9903E29DA194800EA55D6 /* Activity+CoreDataClass.swift */; };
-		23E9904329DA194800EA55D6 /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9903F29DA194800EA55D6 /* Activity+CoreDataProperties.swift */; };
-		23E9904429DA194800EA55D6 /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9904029DA194800EA55D6 /* Plan+CoreDataClass.swift */; };
-		23E9904529DA194800EA55D6 /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9904129DA194800EA55D6 /* Plan+CoreDataProperties.swift */; };
 		23EB22E829CCE2410063CFA1 /* DurationInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */; };
 		641748CC298D8E3B0070A44F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641748CB298D8E3B0070A44F /* AppDelegate.swift */; };
 		641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641748CD298D8E3B0070A44F /* SceneDelegate.swift */; };
@@ -57,6 +57,10 @@
 
 /* Begin PBXFileReference section */
 		0D61595F2DAD4F67C8CF3F7E /* Pods-PlanA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanA.release.xcconfig"; path = "Target Support Files/Pods-PlanA/Pods-PlanA.release.xcconfig"; sourceTree = "<group>"; };
+		235B9F6129DB91E400932275 /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		235B9F6229DB91E400932275 /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		235B9F6329DB91E400932275 /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		235B9F6429DB91E400932275 /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareActivity.swift; sourceTree = "<group>"; };
 		2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddActViewController.swift; sourceTree = "<group>"; };
 		23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlanViewController.swift; sourceTree = "<group>"; };
@@ -86,10 +90,6 @@
 		23ADE44329C144EC002153B9 /* CustomActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityTableViewCell.swift; sourceTree = "<group>"; };
 		23ADE44929C147E5002153B9 /* CustomAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddTableViewCell.swift; sourceTree = "<group>"; };
 		23D107E229D254DB009E38A3 /* AnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
-		23E9903E29DA194800EA55D6 /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		23E9903F29DA194800EA55D6 /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		23E9904029DA194800EA55D6 /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
-		23E9904129DA194800EA55D6 /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		23EB22E729CCE2410063CFA1 /* DurationInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationInputViewController.swift; sourceTree = "<group>"; };
 		5AAF002486C4AC7301A6E59C /* Pods_PlanA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		641748C8298D8E3B0070A44F /* PlanA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,10 +123,10 @@
 		233FD72F29B14C6A00D652BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				23E9903E29DA194800EA55D6 /* Activity+CoreDataClass.swift */,
-				23E9903F29DA194800EA55D6 /* Activity+CoreDataProperties.swift */,
-				23E9904029DA194800EA55D6 /* Plan+CoreDataClass.swift */,
-				23E9904129DA194800EA55D6 /* Plan+CoreDataProperties.swift */,
+				235B9F6129DB91E400932275 /* Activity+CoreDataClass.swift */,
+				235B9F6229DB91E400932275 /* Activity+CoreDataProperties.swift */,
+				235B9F6329DB91E400932275 /* Plan+CoreDataClass.swift */,
+				235B9F6429DB91E400932275 /* Plan+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -386,25 +386,25 @@
 			files = (
 				641748D0298D8E3B0070A44F /* HomeViewController.swift in Sources */,
 				641748CC298D8E3B0070A44F /* AppDelegate.swift in Sources */,
+				235B9F6629DB91E400932275 /* Activity+CoreDataProperties.swift in Sources */,
 				641748D6298D8E3B0070A44F /* PlanA.xcdatamodeld in Sources */,
 				64CE148129C5252B00AC60BA /* CustomAddActivityBoxTableViewCell.swift in Sources */,
 				2397C5D329C6CF8D00C27E4C /* CustomShareActivity.swift in Sources */,
 				64D56CA329AEC13F0000BF4C /* GoogleServices.swift in Sources */,
 				23A9E21E29A970AB0086E1C4 /* GeneratedPlanViewController.swift in Sources */,
 				23A9E21C29A970590086E1C4 /* ActivitySearchViewController.swift in Sources */,
+				235B9F6729DB91E400932275 /* Plan+CoreDataClass.swift in Sources */,
 				64CE147F29C524F500AC60BA /* CustomActivityCategoryTableViewCell.swift in Sources */,
 				23A9E21A29A9703B0086E1C4 /* PlanViewController.swift in Sources */,
-				23E9904529DA194800EA55D6 /* Plan+CoreDataProperties.swift in Sources */,
 				23D107E329D254DB009E38A3 /* AnimationViewController.swift in Sources */,
 				23EB22E829CCE2410063CFA1 /* DurationInputViewController.swift in Sources */,
-				23E9904429DA194800EA55D6 /* Plan+CoreDataClass.swift in Sources */,
 				641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */,
+				235B9F6529DB91E400932275 /* Activity+CoreDataClass.swift in Sources */,
 				23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */,
-				23E9904329DA194800EA55D6 /* Activity+CoreDataProperties.swift in Sources */,
 				23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */,
 				23ADE44A29C147E5002153B9 /* CustomAddTableViewCell.swift in Sources */,
-				23E9904229DA194800EA55D6 /* Activity+CoreDataClass.swift in Sources */,
 				642DA51529CAA4770059E6E0 /* CustomActivitySearchTableViewCell.swift in Sources */,
+				235B9F6829DB91E500932275 /* Plan+CoreDataProperties.swift in Sources */,
 				23A9E21829A9701B0086E1C4 /* DetailsViewController.swift in Sources */,
 				2397C5D529CA373D00C27E4C /* EditAddActViewController.swift in Sources */,
 			);

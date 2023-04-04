@@ -81,12 +81,11 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "How to create a plan:", message: "1) Enter the date and time you want to start this plan and the radius to search for activties around your current location.\n2) Click 'Start Plan' to begin building your plan. \n3) Select activities you are interested in, then press generate to create your plan.\n4) You can edit, delete, and reorder your activites to create the perfect plan.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "How to create a plan:", message: "1) Enter the date and time you want to start this plan and the radius to search for activties around your current location.\n2) Click 'Start Plan' to begin building your plan. \n3) Select activities you are interested in, then press generate to create your plan.\n4) You can tap to edit, swipe to delete, and drag to reorder your activites to create the perfect plan.", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
-    
     
     @IBAction func startPlanButtonPressed(_ sender: Any) {
         leavePage = true
@@ -105,10 +104,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
      self.view.endEditing(true)
     }
-
-
 }

@@ -2,7 +2,7 @@
 //  Plan+CoreDataProperties.swift
 //  PlanA
 //
-//  Created by Aiden Petratos on 4/2/23.
+//  Created by Aiden Petratos on 4/3/23.
 //
 //
 
