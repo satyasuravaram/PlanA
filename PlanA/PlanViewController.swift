@@ -213,13 +213,17 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var destinationRow = destinationIndexPath.row
+        if(destinationIndexPath.row == tableView.numberOfRows(inSection: 0)-1 && tableView.cellForRow(at: destinationIndexPath) is CustomAddActivityBoxTableViewCell) {
+            destinationRow -= 1
+        }
         let activity = categories[sourceIndexPath.row]
         categories.remove(at: sourceIndexPath.row)
-        categories.insert(activity, at: destinationIndexPath.row)
+        categories.insert(activity, at: destinationRow)
         
         let actDuration = durations[sourceIndexPath.row]
         durations.remove(at: sourceIndexPath.row)
-        durations.insert(actDuration, at: destinationIndexPath.row)
+        durations.insert(actDuration, at: destinationRow)
         
         self.tableView.reloadData()
     }

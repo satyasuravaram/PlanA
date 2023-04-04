@@ -2,7 +2,7 @@
 //  Plan+CoreDataClass.swift
 //  PlanA
 //
-//  Created by Aiden Petratos on 4/2/23.
+//  Created by Aiden Petratos on 4/3/23.
 //
 //
 
@@ -31,5 +31,24 @@ public class Plan: NSManagedObject {
             print(String(count) + ") " + (act as! Activity).actDetails() + "\n\n")
             count+=1
         }
+    }
+    
+    // get full plan
+    func getPlanActivties() -> String {
+        var planActs = name! + "\n\nStart Date and Time: "
+        planActs.append(startDateTime!.description)
+        planActs.append("\n\n")
+        
+        var count = 1
+        for act in listActivities! {
+            planActs.append(String(count) + ") " + (act as! Activity).name! + "\n")
+            planActs.append("Category: " + (act as! Activity).categoryName! + "\n")
+            planActs.append("Location: " + (act as! Activity).location! + "\n")
+            planActs.append("Duration: " + (act as! Activity).timeSpan! + "\n")
+            planActs.append("Business Hours: " + (act as! Activity).businessHours! + "\n\n")
+            count+=1
+        }
+        print(planActs)
+        return planActs
     }
 }
