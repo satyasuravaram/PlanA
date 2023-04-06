@@ -17,11 +17,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var pageTitle: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var stopsLabel: UILabel!
-    @IBOutlet var vStack: UIStackView!
     @IBOutlet var planName: UITextField!
     @IBOutlet var pencilEditImage: UIImageView!
     @IBOutlet var homeButton: UIButton!
-    @IBOutlet var refreshButton: UIButton!
+    @IBOutlet var infoButton: UIButton!
+    @IBOutlet var hStack: UIStackView!
+    @IBOutlet var vStack: UIStackView!
+    @IBOutlet var totalTLabel: UILabel!
+    @IBOutlet var totalSLabel: UILabel!
     
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -44,11 +47,11 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             print(activities.description)
             pageTitle.text = selectedSavedPlan.name
             saveButton.isEnabled = false
-            saveButton.backgroundColor = .lightGray
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            //saveButton.backgroundColor = .lightGray
             pageTitle.isUserInteractionEnabled = false
             pencilEditImage.isUserInteractionEnabled = false
             pencilEditImage.isHidden = true
-            refreshButton.isEnabled = false
             tableView.dragInteractionEnabled = false
             saved = true
             tableView.reloadData()
@@ -86,9 +89,9 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             pencilEditImage.isUserInteractionEnabled = true
             pencilEditImage.isHidden = false
             tableView.dragInteractionEnabled = true
-            refreshButton.isEnabled = planDidChange
             
-            saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
+//            saveButton.backgroundColor = UIColor(red: 53/255, green: 167/255, blue: 255/255, alpha: 1)
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
         
         // Do any additional setup after loading the view.
@@ -111,44 +114,36 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         tapped.numberOfTapsRequired = 1
         pencilEditImage.addGestureRecognizer(tapped)
         
-        // set up route button
-        saveButton.layer.cornerRadius = 10
-        saveButton.setTitleColor(.white, for: .normal)
-        if self.traitCollection.userInterfaceStyle == .dark {
-            vStack.backgroundColor = .black
-        } else {
-            vStack.backgroundColor = .white
-        }
-        let width = vStack.bounds.size.width
-        saveButton.frame = CGRectMake(0, 0, width-10, 100)
-        
-//        refreshButton.isEnabled = planDidChange
+        // set up save button
+//        saveButton.layer.cornerRadius = 10
+//        saveButton.setTitleColor(.white, for: .normal)
         
         // set up labels
-        timeLabel.textColor = .white
-        stopsLabel.textColor = .white
+//        timeLabel.textColor = .white
+//        stopsLabel.textColor = .white
         
         // table view
         tableView.separatorStyle = .none
 //        tableView.dragInteractionEnabled = true
         tableView.dataSource = self
         tableView.dragDelegate = self
+        tableView.contentInset.bottom = 80
+        self.view.sendSubviewToBack(tableView)
+        
+        // set up button bar
+        hStack.layer.cornerRadius = 5
+        self.view.insertSubview(tableView, belowSubview: hStack)
+        self.view.insertSubview(tableView, belowSubview: vStack)
         
         // catch if user exits app
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         // back button
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(savePlan)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(leaveGenPlan)
         )
         
-        // catch if user enters app
-        let notificationC = NotificationCenter.default
-        notificationC.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    @objc func appMovedToForeground() {
-        vStack.backgroundColor = tableView.backgroundColor
+        infoButton.setImage(UIImage(systemName: "info.circle.fill"), for: .normal)
     }
     
     func generatePlan(catCount:[String:Int]) {
@@ -246,6 +241,22 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func infoButtonPressed() {
+        if(infoButton.currentImage == UIImage(systemName: "info.circle.fill")) {
+            timeLabel.isHidden = true
+            totalTLabel.isHidden = true
+            stopsLabel.isHidden = true
+            totalSLabel.isHidden = true
+            infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        } else {
+            timeLabel.isHidden = false
+            totalTLabel.isHidden = false
+            stopsLabel.isHidden = false
+            totalSLabel.isHidden = false
+            infoButton.setImage(UIImage(systemName: "info.circle.fill"), for: .normal)
+        }
+    }
+    
     // create export pop over view
     @IBAction func exportButtonPressed() {
         // action items
@@ -292,27 +303,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @objc func savePlan() {
-        if(!self.saved) {
-            let alert = UIAlertController(title: "Do you want to save this plan before you exit?", message: "It can be revisted under Saved Plans.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Save", style: .default) { (action) in
-                print("save")
-                self.saved = true
-                do {
-                    try self.context.save()
-                }
-                catch {
-                    print("Issue saving core data")
-                }
+    @objc func leaveGenPlan() {
+        if(!didSelectPlan) {
+            let alert = UIAlertController(title: "Are you sure you want to leave this generated plan.", message: nil, preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Yes", style: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
-            let cancelButton = UIAlertAction(title: "No", style: .default) { (action) in
-                print("cancel")
-                self.saved = false
-                //self.context.delete(plan)
-                self.navigationController?.popViewController(animated: true)
-            }
+            let cancelButton = UIAlertAction(title: "No", style: .default)
             alert.addAction(cancelButton)
             
             self.present(alert, animated: true)
@@ -350,21 +348,6 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func refreshButtonPressed() {
-        let alert = UIAlertController(title: "You haved modified your plan.", message: "Press update to regenerate your plan with your changes.", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Update", style: .cancel) { (action) in
-            print("REFRESH")
-            planDidChange = false
-            self.refreshButton.isEnabled = false
-            // regenerate plan
-        }
-        alert.addAction(okButton)
-        let cancelButton = UIAlertAction(title: "Cancel", style: .default)
-        alert.addAction(cancelButton)
-        
-        self.present(alert, animated: true)
-    }
-    
     func plusButtonPressed(index:Int) {
         print("Plus button was PRESSED at index: ", index)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -378,6 +361,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
         saved = true
         do {
             try self.context.save()
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             let alert = UIAlertController(title: "Plan saved.", message: "You can now revisit this plan in Saved Plans.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default)
             alert.addAction(okButton)
@@ -389,24 +373,25 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        refreshButton.isEnabled = (planDidChange && !didSelectPlan)
         if(planDidChange) {
             tableView.reloadData()
         }
-        stopsLabel.text = "Stops: " + String(activities.count)
+        stopsLabel.text = String(activities.count)
         var totalTime = 0
         for act in activities {
             totalTime += Int(act.duration)
         }
         let hours = totalTime / 3600
         let minutes = totalTime / 60 % 60
-        var text = "Time: "
+        var text = ""
         if(hours > 1) {
-            text.append(String(hours) + "hrs ")
+            text.append(String(hours) + " hrs ")
         } else if (hours == 1) {
-            text.append("1hr ")
+            text.append("1 hr ")
         }
-        text.append(String(minutes) + "mins")
+        if(minutes > 0) {
+            text.append(String(minutes) + " mins")
+        }
         timeLabel.text = text
     }
 }
@@ -516,8 +501,8 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
                 plan.listActivities = NSOrderedSet(array: activities)
                 //plan.listActs = activities
                 planDidChange = true
-                self.refreshButton.isEnabled = true
                 self.tableView.reloadData()
+                self.viewWillAppear(false)
             }
             return UISwipeActionsConfiguration(actions: [action])
         }
@@ -535,7 +520,6 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         activities.insert(item, at: destinationIndexPath.row / 2)
         plan.listActivities = NSOrderedSet(array: activities)
         planDidChange = true
-        self.refreshButton.isEnabled = true
         self.tableView.reloadData()
     }
 }
