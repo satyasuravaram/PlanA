@@ -14,6 +14,11 @@ class HomeViewController: UIViewController {
     
     var locationManager:CLLocationManager!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    // reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet var startPlanButton: UIButton!
     @IBOutlet var savedPlansButton: UIButton!
     @IBOutlet var logo: UIImageView!
@@ -50,6 +55,21 @@ class HomeViewController: UIViewController {
 //        getNearbyPlaces(query: "", location: locationManager.location!, completion: {_ in })
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        if(!appDelegate.hasAlreadyLaunched){
+            //set hasAlreadyLaunched to false
+            appDelegate.sethasAlreadyLaunched()
+            print("FIRST TIME LAUNCHING")
+        } else {
+            print("NOT FIRST TIME LAUNCHING")
+        }
+        do {
+            try self.context.save()
+        }
+        catch {
+            print("ERROR")
+        }
+    }
 }
 
 // User location authorization status

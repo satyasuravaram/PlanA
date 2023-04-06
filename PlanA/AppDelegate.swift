@@ -13,14 +13,30 @@ import GooglePlaces
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var hasAlreadyLaunched :Bool!
+    
     static let apiKey = "AIzaSyBQuyX6q1tLNTBHH4M0UynUm7SxScMiDQA"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
+        //check first launched
+        if (hasAlreadyLaunched)
+        {
+            print("NOT FIRST TIME LAUNCHING")
+            hasAlreadyLaunched = true
+        }else{
+            print("FIRST TIME LAUNCHING")
+            UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
+        }
         
         // Initialize GooglePlaces
         GMSPlacesClient.provideAPIKey(AppDelegate.apiKey)
         return true
+    }
+    
+    func sethasAlreadyLaunched(){
+        hasAlreadyLaunched = true
     }
 
     // MARK: UISceneSession Lifecycle

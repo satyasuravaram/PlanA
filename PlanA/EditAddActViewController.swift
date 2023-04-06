@@ -62,7 +62,7 @@ class EditAddActViewController: UIViewController {
        
         if(editActivity) {
             // edit acitivty view
-            pageTitle.text = "Edit Activity"
+            pageTitle.text = (didSelectPlan) ? "Activity" : "Edit Activity"
             chosenAddress.isHidden = true
             chosenActivityName.isHidden = true
             directionsButton.isHidden = (actDesc == "Added Activity")
@@ -112,6 +112,8 @@ class EditAddActViewController: UIViewController {
             activity.location = chosenAddress.text
             activity.duration = Double(duration.countDownDuration)
             activity.actDescription = "Added Activity"
+            activity.categoryName = "none"
+            activity.businessHours = ""
             let newIndex = (index-1)/2 + 1
             activities.insert(activity, at: newIndex)
             plan.listActivities = NSOrderedSet(array: activities)
