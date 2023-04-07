@@ -127,7 +127,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
 //        tableView.dragInteractionEnabled = true
         tableView.dataSource = self
         tableView.dragDelegate = self
-        tableView.contentInset.bottom = 80
+        tableView.contentInset.bottom = 100
         self.view.sendSubviewToBack(tableView)
         
         // set up button bar
