@@ -12,7 +12,6 @@
 		235B9F6729DB91E400932275 /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6329DB91E400932275 /* Plan+CoreDataClass.swift */; };
 		235B9F6829DB91E500932275 /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6429DB91E400932275 /* Plan+CoreDataProperties.swift */; };
 		235B9F6A29DF85F900932275 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6929DF85F800932275 /* DropDown.swift */; };
-		235B9F6C29DF972D00932275 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B9F6B29DF972D00932275 /* TempViewController.swift */; };
 		2397C5D329C6CF8D00C27E4C /* CustomShareActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */; };
 		2397C5D529CA373D00C27E4C /* EditAddActViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */; };
 		23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */; };
@@ -64,7 +63,6 @@
 		235B9F6329DB91E400932275 /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		235B9F6429DB91E400932275 /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		235B9F6929DF85F800932275 /* DropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
-		235B9F6B29DF972D00932275 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareActivity.swift; sourceTree = "<group>"; };
 		2397C5D429CA373D00C27E4C /* EditAddActViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddActViewController.swift; sourceTree = "<group>"; };
 		23A9E21529A95BAE0086E1C4 /* SavedPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlanViewController.swift; sourceTree = "<group>"; };
@@ -209,14 +207,13 @@
 				641748D1298D8E3B0070A44F /* Main.storyboard */,
 				641748D9298D8E400070A44F /* LaunchScreen.storyboard */,
 				2397C5D229C6CF8D00C27E4C /* CustomShareActivity.swift */,
+				235B9F6929DF85F800932275 /* DropDown.swift */,
 				23ADE44B29C14932002153B9 /* Custom Table Cell */,
 				641748DC298D8E400070A44F /* Info.plist */,
 				64D56CA229AEC13E0000BF4C /* GoogleServices.swift */,
 				641748D7298D8E400070A44F /* Assets.xcassets */,
 				23A9E24B29AAE9EF0086E1C4 /* Font */,
 				641748D4298D8E3B0070A44F /* PlanA.xcdatamodeld */,
-				235B9F6929DF85F800932275 /* DropDown.swift */,
-				235B9F6B29DF972D00932275 /* TempViewController.swift */,
 			);
 			path = PlanA;
 			sourceTree = "<group>";
@@ -406,7 +403,6 @@
 				23EB22E829CCE2410063CFA1 /* DurationInputViewController.swift in Sources */,
 				235B9F6A29DF85F900932275 /* DropDown.swift in Sources */,
 				641748CE298D8E3B0070A44F /* SceneDelegate.swift in Sources */,
-				235B9F6C29DF972D00932275 /* TempViewController.swift in Sources */,
 				235B9F6529DB91E400932275 /* Activity+CoreDataClass.swift in Sources */,
 				23A9E21629A95BAE0086E1C4 /* SavedPlanViewController.swift in Sources */,
 				23ADE44429C144EC002153B9 /* CustomActivityTableViewCell.swift in Sources */,

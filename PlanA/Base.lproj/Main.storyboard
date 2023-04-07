@@ -59,36 +59,6 @@
             </objects>
             <point key="canvasLocation" x="-1770" y="-3"/>
         </scene>
-        <!--Temp View Controller-->
-        <scene sceneID="Jd7-D0-662">
-            <objects>
-                <viewController id="efR-mK-YXt" customClass="TempViewController" customModule="PlanA" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XcG-Re-rIj">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="temp" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="upQ-4j-MHJ" customClass="DropDown" customModule="PlanA" customModuleProvider="target">
-                                <rect key="frame" x="97" y="409" width="198" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textChanged" destination="efR-mK-YXt" eventType="editingChanged" id="bcd-DZ-qgd"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="sm1-Zd-Zdj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="KtK-0N-uYF"/>
-                    <connections>
-                        <outlet property="dropDown" destination="upQ-4j-MHJ" id="lrk-XX-Frh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zB6-xP-VYQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="23.664122137404579" y="-728.16901408450713"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -126,15 +96,6 @@
                                 </state>
                                 <connections>
                                     <segue destination="4Jl-Ag-ItX" kind="show" id="yhm-p3-hGo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-mk-kdO">
-                                <rect key="frame" x="159" y="726" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="efR-mK-YXt" kind="show" id="q7p-5p-ASu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -568,6 +529,27 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-f8-ghO">
+                                <rect key="frame" x="348" y="44" width="35" height="35"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to2-qd-Y1k">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="to2-qd-Y1k" secondAttribute="height" multiplier="1:1" id="8U9-tN-MyI"/>
+                                            <constraint firstAttribute="width" constant="35" id="PgR-Re-dRa"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="medium"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="searchButtonPressed" destination="EpO-ZQ-rFV" eventType="touchUpInside" id="h7U-8f-axz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ltP-M6-XvY">
                                 <rect key="frame" x="0.0" y="94" width="393" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -654,6 +636,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ltP-M6-XvY" secondAttribute="bottom" id="6Es-Rm-UFs"/>
+                            <constraint firstItem="2eX-7q-Pbi" firstAttribute="trailing" secondItem="SMf-f8-ghO" secondAttribute="trailing" constant="10" id="EYz-cg-4V1"/>
+                            <constraint firstItem="SMf-f8-ghO" firstAttribute="centerY" secondItem="nZG-tp-Wiz" secondAttribute="centerY" id="USI-wO-RuL"/>
                             <constraint firstItem="ltP-M6-XvY" firstAttribute="trailing" secondItem="2eX-7q-Pbi" secondAttribute="trailing" id="bZK-h3-a2C"/>
                             <constraint firstItem="nZG-tp-Wiz" firstAttribute="centerX" secondItem="GMg-3a-Ewx" secondAttribute="centerX" id="lll-2S-1d5"/>
                             <constraint firstItem="ltP-M6-XvY" firstAttribute="leading" secondItem="2eX-7q-Pbi" secondAttribute="leading" id="ng7-vr-gyf"/>
@@ -663,7 +647,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="KL8-Ah-9Xx"/>
                     <connections>
+                        <outlet property="hStack" destination="SMf-f8-ghO" id="CwD-Hx-bRU"/>
                         <outlet property="pageTitle" destination="nZG-tp-Wiz" id="JWG-fZ-EZP"/>
+                        <outlet property="searchButton" destination="to2-qd-Y1k" id="fve-ga-FrU"/>
                         <outlet property="tableView" destination="ltP-M6-XvY" id="qPx-tU-ENO"/>
                     </connections>
                 </viewController>
@@ -1136,6 +1122,7 @@
         <image name="PurplePlusButton" width="60" height="60"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>

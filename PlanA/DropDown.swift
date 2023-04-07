@@ -9,16 +9,17 @@ import UIKit
 
 class DropDown: UITextField {
 
-    var arrow : Arrow!
+    //var arrow : Arrow!
     var table : UITableView!
     var shadow : UIView!
     public  var selectedIndex: Int?
+    var selectedWord: String?
 
 
     //MARK: IBInspectable
     @IBInspectable public var rowHeight: CGFloat = 30
     @IBInspectable public var rowBackgroundColor: UIColor = .white
-    @IBInspectable public var selectedRowColor: UIColor = .cyan
+    @IBInspectable public var selectedRowColor = UIColor.white
     @IBInspectable public var hideOptionsWhenSelect = true
     @IBInspectable  public var isSearchEnable: Bool = true {
         didSet{
@@ -64,6 +65,7 @@ class DropDown: UITextField {
 //            }
             reSizeTable()
             selectedIndex = nil
+            selectedWord = nil
             self.table.reloadData()
         }
     }
@@ -71,15 +73,16 @@ class DropDown: UITextField {
     public func reloadAll() {
         reSizeTable()
         selectedIndex = nil
+        selectedWord = nil
         self.table.reloadData()
     }
     
-    @IBInspectable public var arrowSize: CGFloat = 15 {
-        didSet{
-            let center =  arrow.superview!.center
-            arrow.frame = CGRect(x: center.x - arrowSize/2, y: center.y - arrowSize/2, width: arrowSize, height: arrowSize)
-        }
-    }
+//    @IBInspectable public var arrowSize: CGFloat = 15 {
+//        didSet{
+//            let center =  arrow.superview!.center
+//            arrow.frame = CGRect(x: center.x - arrowSize/2, y: center.y - arrowSize/2, width: arrowSize, height: arrowSize)
+//        }
+//    }
 
     // Init
     public override init(frame: CGRect) {
@@ -107,11 +110,11 @@ class DropDown: UITextField {
         let rightView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
         self.rightView = rightView
         self.rightViewMode = .always
-        let arrowContainerView = UIView(frame: rightView.frame)
-        self.rightView?.addSubview(arrowContainerView)
-        let center = arrowContainerView.center
-        arrow = Arrow(origin: CGPoint(x: center.x - arrowSize/2,y: center.y - arrowSize/2),size: arrowSize)
-        arrowContainerView.addSubview(arrow)
+//        let arrowContainerView = UIView(frame: rightView.frame)
+//        self.rightView?.addSubview(arrowContainerView)
+//        let center = arrowContainerView.center
+//        arrow = Arrow(origin: CGPoint(x: center.x - arrowSize/2,y: center.y - arrowSize/2),size: arrowSize)
+//        arrowContainerView.addSubview(arrow)
 
         self.backgroundView = UIView(frame: .zero)
         self.backgroundView.backgroundColor = .clear
@@ -166,7 +169,7 @@ class DropDown: UITextField {
         table.dataSource = self
         table.delegate = self
         table.alpha = 0
-        table.separatorStyle = .none
+        table.separatorStyle = .singleLine
         table.layer.cornerRadius = 3
         table.backgroundColor = rowBackgroundColor
         table.rowHeight = rowHeight
@@ -187,7 +190,7 @@ class DropDown: UITextField {
                         self.table.alpha = 1
                         self.shadow.frame = self.table.frame
                         self.shadow.dropShadow()
-                        self.arrow.position = .up
+                        //self.arrow.position = .up
 
         },
                        completion: { (finish) -> Void in
@@ -211,7 +214,7 @@ class DropDown: UITextField {
                                                   height: 0)
                         self.shadow.alpha = 0
                         self.shadow.frame = self.table.frame
-                        self.arrow.position = .down
+                       // self.arrow.position = .down
         },
                        completion: { (didFinish) -> Void in
 
@@ -322,7 +325,13 @@ extension DropDown: UITableViewDataSource {
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
 
-        if indexPath.row != selectedIndex{
+//        if indexPath.row != selectedIndex{
+//            cell!.backgroundColor = rowBackgroundColor
+//        }else {
+//            cell?.backgroundColor = selectedRowColor
+//        }
+        
+        if dataArray[indexPath.row] != selectedWord{
             cell!.backgroundColor = rowBackgroundColor
         }else {
             cell?.backgroundColor = selectedRowColor
@@ -331,10 +340,11 @@ extension DropDown: UITableViewDataSource {
         if self.imageArray.count > indexPath.row {
             cell!.imageView!.image = UIImage(named: imageArray[indexPath.row])
         }
+        cell!.textLabel!.font = UIFont(name: "Poppins-Regular", size: 15.0)
         cell!.textLabel!.text = "\(dataArray[indexPath.row])"
-        cell!.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
+        //cell!.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
         cell!.selectionStyle = .none
-        cell?.textLabel?.font = self.font
+        //cell?.textLabel?.font = self.font
         cell?.textLabel?.textAlignment = self.textAlignment
         cell?.textLabel?.textColor = UIColor.black
         return cell!
@@ -344,7 +354,8 @@ extension DropDown: UITableViewDataSource {
 extension DropDown: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = (indexPath as NSIndexPath).row
-        let selectedText = self.dataArray[self.selectedIndex!]
+        var selectedText = self.dataArray[self.selectedIndex!]
+        selectedWord = selectedText
         tableView.cellForRow(at: indexPath)?.alpha = 0
         UIView.animate(withDuration: 0,
                        animations: { () -> Void in
@@ -377,73 +388,73 @@ extension DropDown: UITableViewDelegate {
 
 
 
-//MARK: Arrow
-enum Position {
-    case left
-    case down
-    case right
-    case up
-}
-
-class Arrow: UIView {
-
-    var position: Position = .down {
-        didSet{
-            switch position {
-            case .left:
-                self.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-                break
-
-            case .down:
-                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi*2)
-                break
-
-            case .right:
-                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
-                break
-
-            case .up:
-                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-                break
-            }
-        }
-    }
-
-    init(origin: CGPoint, size: CGFloat) {
-        super.init(frame: CGRect(x: origin.x, y: origin.y, width: size, height: size))
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func draw(_ rect: CGRect) {
-
-        // Get size
-        let size = self.layer.frame.width
-
-        // Create path
-        let bezierPath = UIBezierPath()
-
-        // Draw points
-        let qSize = size/4
-
-        bezierPath.move(to: CGPoint(x: 0, y: qSize))
-        bezierPath.addLine(to: CGPoint(x: size, y: qSize))
-        bezierPath.addLine(to: CGPoint(x: size/2, y: qSize*3))
-        bezierPath.addLine(to: CGPoint(x: 0, y: qSize))
-        bezierPath.close()
-
-        // Mask to path
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = bezierPath.cgPath
-        if #available(iOS 12.0, *) {
-            self.layer.addSublayer (shapeLayer)
-        } else {
-            self.layer.mask = shapeLayer
-        }
-    }
-}
+////MARK: Arrow
+//enum Position {
+//    case left
+//    case down
+//    case right
+//    case up
+//}
+//
+//class Arrow: UIView {
+//
+//    var position: Position = .down {
+//        didSet{
+//            switch position {
+//            case .left:
+//                self.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+//                break
+//
+//            case .down:
+//                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi*2)
+//                break
+//
+//            case .right:
+//                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
+//                break
+//
+//            case .up:
+//                self.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+//                break
+//            }
+//        }
+//    }
+//
+//    init(origin: CGPoint, size: CGFloat) {
+//        super.init(frame: CGRect(x: origin.x, y: origin.y, width: size, height: size))
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    override func draw(_ rect: CGRect) {
+//
+//        // Get size
+//        let size = self.layer.frame.width
+//
+//        // Create path
+//        let bezierPath = UIBezierPath()
+//
+//        // Draw points
+//        let qSize = size/4
+//
+//        bezierPath.move(to: CGPoint(x: 0, y: qSize))
+//        bezierPath.addLine(to: CGPoint(x: size, y: qSize))
+//        bezierPath.addLine(to: CGPoint(x: size/2, y: qSize*3))
+//        bezierPath.addLine(to: CGPoint(x: 0, y: qSize))
+//        bezierPath.close()
+//
+//        // Mask to path
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.path = bezierPath.cgPath
+//        if #available(iOS 12.0, *) {
+//            self.layer.addSublayer (shapeLayer)
+//        } else {
+//            self.layer.mask = shapeLayer
+//        }
+//    }
+//}
 
 extension UIView {
 
