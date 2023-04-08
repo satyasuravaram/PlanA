@@ -354,7 +354,7 @@ extension DropDown: UITableViewDataSource {
 extension DropDown: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = (indexPath as NSIndexPath).row
-        var selectedText = self.dataArray[self.selectedIndex!]
+        let selectedText = self.dataArray[self.selectedIndex!]
         selectedWord = selectedText
         tableView.cellForRow(at: indexPath)?.alpha = 0
         UIView.animate(withDuration: 0,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditAddActViewController: UIViewController {
+class EditAddActViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var doneButton: UIButton!
     @IBOutlet var directionsButton: UIButton!
@@ -48,17 +48,6 @@ class EditAddActViewController: UIViewController {
         doneButton.layer.cornerRadius = 10
         doneButton.setTitleColor(.white, for: .normal)
         doneButton.titleLabel?.textColor = .white
-        
-        // add done button to keyboard
-        let keypadToolbar: UIToolbar = UIToolbar()
-        keypadToolbar.items=[
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTyping))
-        ]
-        keypadToolbar.sizeToFit()
-        // add a toolbar with a done button above the keyboard
-        chosenActivityName.inputAccessoryView = keypadToolbar
-        chosenAddress.inputAccessoryView = keypadToolbar
        
         if(editActivity) {
             // edit acitivty view
@@ -95,6 +84,12 @@ class EditAddActViewController: UIViewController {
         }
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        chosenAddress.resignFirstResponder()
+        chosenActivityName.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func doneButtonPressed() {
         print("finsihed")
         if(editActivity) {
@@ -134,10 +129,5 @@ class EditAddActViewController: UIViewController {
         if let url = URL(string: "https://www.google.co.in/maps/dir/??saddr=&daddr=\(lat),\(lng)&directionsmode=driving") {
             UIApplication.shared.open(url)
         }
-    }
-    
-    @objc func doneTyping() {
-        chosenAddress.resignFirstResponder()
-        chosenActivityName.resignFirstResponder()
     }
 }

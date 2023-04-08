@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tGg-nH-q4j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tGg-nH-q4j">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -163,7 +162,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Radius:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27W-fB-7xy">
-                                <rect key="frame" x="20" y="350" width="164.66666666666666" height="31"/>
+                                <rect key="frame" x="20" y="348.33333333333331" width="164.66666666666666" height="31"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -175,7 +174,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="uZD-4g-Ev9">
-                                <rect key="frame" x="20" y="249" width="225" height="36"/>
+                                <rect key="frame" x="20" y="249.00000000000003" width="225" height="34.333333333333343"/>
                                 <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="hcg-R7-lRa"/>
@@ -194,16 +193,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOf-Gv-M93">
-                                <rect key="frame" x="70" y="401" width="45.333333333333343" height="24"/>
+                                <rect key="frame" x="69" y="399.33333333333331" width="45.333333333333343" height="24"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TKD-33-WD8">
-                                <rect key="frame" x="28" y="396" width="32" height="34"/>
+                                <rect key="frame" x="27" y="394.33333333333331" width="32" height="34"/>
                                 <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Co4-YN-nf1" id="rN6-GI-RyJ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e7b-od-xJO"/>
@@ -232,7 +234,7 @@
                             <constraint firstItem="EEh-mQ-qbE" firstAttribute="leading" secondItem="e7b-od-xJO" secondAttribute="leading" id="pTP-33-ICU"/>
                             <constraint firstItem="27W-fB-7xy" firstAttribute="top" secondItem="uZD-4g-Ev9" secondAttribute="bottom" constant="65" id="qUr-Ua-ILx"/>
                             <constraint firstItem="TKD-33-WD8" firstAttribute="top" secondItem="27W-fB-7xy" secondAttribute="bottom" constant="15" id="usT-Vn-uXt"/>
-                            <constraint firstItem="TKD-33-WD8" firstAttribute="leading" secondItem="uZD-4g-Ev9" secondAttribute="leading" constant="8" id="vJ6-VF-Zyf"/>
+                            <constraint firstItem="TKD-33-WD8" firstAttribute="leading" secondItem="uZD-4g-Ev9" secondAttribute="leading" constant="7" id="vJ6-VF-Zyf"/>
                             <constraint firstItem="HJb-ah-GP4" firstAttribute="trailing" secondItem="e7b-od-xJO" secondAttribute="trailing" id="yZV-gr-V5d"/>
                         </constraints>
                     </view>
@@ -381,7 +383,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPb-8F-iAU">
-                                <rect key="frame" x="118.33333333333333" y="83" width="156.66666666666669" height="45"/>
+                                <rect key="frame" x="128.66666666666666" y="83" width="135.99999999999997" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="32"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -404,7 +406,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sjF-XY-NA5">
-                                <rect key="frame" x="0.0" y="136" width="393" height="607"/>
+                                <rect key="frame" x="0.0" y="128.33333333333331" width="393" height="614.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BoxCell" rowHeight="196" id="M4y-5N-gCm" customClass="CustomActivityCategoryTableViewCell" customModule="PlanA" customModuleProvider="target">
@@ -427,13 +429,13 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOk-PQ-uN7">
-                                                    <rect key="frame" x="40.000000000000007" y="24" width="80.666666666666686" height="24"/>
+                                                    <rect key="frame" x="40.000000000000007" y="24" width="69.666666666666686" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press here to select an activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-mZ-AeV">
-                                                    <rect key="frame" x="40" y="87" width="257.33333333333331" height="24"/>
+                                                    <rect key="frame" x="39.999999999999986" y="87" width="231.66666666666663" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -671,7 +673,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-55-mPv">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="3600" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-55-mPv">
                                 <rect key="frame" x="30" y="219.66666666666663" width="333" height="216"/>
                                 <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </datePicker>
@@ -1052,14 +1054,20 @@
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter activity name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SEA-K9-rq9">
                                 <rect key="frame" x="119.66666666666669" y="114" width="163" height="34"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oSB-Ln-fn2" id="sgf-xz-r8Z"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBJ-co-WEe">
                                 <rect key="frame" x="119.66666666666669" y="454" width="124" height="34"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oSB-Ln-fn2" id="K60-VW-tfd"/>
+                                </connections>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8q-cl-aJZ">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="3600" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8q-cl-aJZ">
                                 <rect key="frame" x="109.66666666666669" y="193" width="265" height="216"/>
                                 <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>

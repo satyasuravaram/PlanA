@@ -71,7 +71,7 @@ class ActivitySearchViewController: UIViewController {
         // search bar
         hStack.layer.cornerRadius = 35 / 2
         expandedStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.6).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.15).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.12).isActive = true
         hStack.addArrangedSubview(expandedStackView)
         hStack.addArrangedSubview(addButton)
     }
@@ -112,17 +112,19 @@ class ActivitySearchViewController: UIViewController {
         let show = expandedStackView.isHidden
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             UIView.animate(withDuration: 1, delay: 0, options: .allowAnimatedContent, animations: {
+                
                 self.expandedStackView.isHidden = !show
             }, completion: nil)
         })
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
-            if(show) {
-                UIView.animate(withDuration: 0.75, delay: 0, options: .transitionCrossDissolve, animations: {
-                    self.addButton.isHidden = false
-                }, completion: nil)
-            } else {
-                self.addButton.isHidden = true
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.05, execute: {
+            self.addButton.isHidden = !show
+//            if(show) {
+//                UIView.animate(withDuration: 0.75, delay: 0, options: .beginFromCurrentState, animations: {
+//                    self.addButton.isHidden = false
+//                }, completion: nil)
+//            } else {
+//                self.addButton.isHidden = true
+//            }
         })
         DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
             self.options.tintColor = (show) ? .black : .clear
