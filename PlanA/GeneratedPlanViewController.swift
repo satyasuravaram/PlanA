@@ -127,7 +127,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
 //        tableView.dragInteractionEnabled = true
         tableView.dataSource = self
         tableView.dragDelegate = self
-        tableView.contentInset.bottom = 80
+        tableView.contentInset.bottom = 100
         self.view.sendSubviewToBack(tableView)
         
         // set up button bar
@@ -414,18 +414,6 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             cell.titleLabel.text = activities[row].name
             
             cell.businessHours.text = activities[row].businessHours
-//            var text = "For "
-//            let time = Int(activities[indexPath.row / 2].duration)
-//            let hours = Int(time) / 3600
-//            let minutes = Int(time) / 60 % 60
-//            if(hours == 1) {
-//                text = text + String(hours) + " hour "
-//            } else if(hours != 0) {
-//                text = text + String(hours) + " hours "
-//            }
-//            if(minutes != 0) {
-//                text = text + String(minutes) + " minutes"
-//            }
             
             var text = ""
             let dateFormatter = DateFormatter()
@@ -444,7 +432,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             
             //cell.durationLabel.textColor = .black
             cell.durationLabel.text = text
-            if(activities[row].actDescription == "Added Activity") {
+            if(activities[row].actDescription == "Added Activity" || UIImage(named: activities[row].categoryName!) == nil) {
                 cell.cellBackground.image = UIImage(named: "GrayBox")
             } else {
                 cell.cellBackground.image = UIImage(named: activities[row].categoryName!)
