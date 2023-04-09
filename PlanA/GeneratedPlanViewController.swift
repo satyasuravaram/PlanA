@@ -154,31 +154,47 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
             getNearbyPlaces(query: cat, radius: plan.radius, location: locMan.location!, completion: { places in
                 let count = catCount[cat]!
                 
-                // TODO: Alert user that 0 (or not enough) places exist with given radius
-                if (count > places.count) {
-                    return
-                }
-
                 let result = activities.filter { act in
                     act.categoryName == cat
                 }
                 
+                if (places.count == 0) {
+                    for index in 0..<count {
+                        result[index].name = "No results found for \(cat)"
+                        result[index].actDescription = ""
+                        result[index].businessHours = ""
+                        result[index].location = "No location found"
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    return
+                }
+                
                 // Get random indices
                 var randSet = Set<Int>()
+                print("count: \(count)")
                 print("places count: \(places.count)")
                 while randSet.count < count {
+                    print(randSet)
+                    print(places.count)
                     let rand = Int.random(in: 0..<places.count)
-                    if randSet.contains(rand) {
-                      continue
+                    if randSet.count >= places.count {
+                        break
+                        
+                    } else if randSet.contains(rand) {
+                        continue
                     }
                     randSet.insert(rand)
                 }
-                print(randSet)
                 
-                // TODO: need to refine list by business hours to chekc if activity is available
-                // TODO: randomly select activities instead of choosing from beginning of array
+                var tempSet = randSet
+                
                 for index in 0..<count {
-                    let i = randSet.popFirst()!
+                    if tempSet.count == 0 {
+                        tempSet = randSet
+                    }
+                    let i = tempSet.popFirst()!
                     print(i)
                     let place = places[i]
                     let placeID = place["placeID"] as! String
@@ -189,7 +205,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                         getPlaceByID(placeID: placeID, completion: { place in
                             print("The selected place is: \(place.name ?? "None")")
                             print(place.placeID!)
-                            var day = Calendar.current.component(.weekday, from: Date.now) - 2
+                            
+                            if place.openingHours == nil || place.openingHours?.weekdayText == nil {
+                                result[index].businessHours = ""
+                                self.tableView.reloadData()
+                                return
+                            }
+                            print(place.openingHours!.weekdayText!)
+                            var day = Calendar.current.component(.weekday, from: plan.startDateTime!) - 2
                             if day == -1 {
                                 day = 6
                             }
