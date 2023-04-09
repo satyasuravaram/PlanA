@@ -52,6 +52,7 @@ class ActivitySearchViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.isHidden = true
         options.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        options.textColor = .black
         options.optionArray = allSearchableCategories
         stackView.addArrangedSubview(options)
         return stackView
@@ -109,6 +110,7 @@ class ActivitySearchViewController: UIViewController {
     @IBAction func searchButtonPressed() {
         options.text = ""
         options.tintColor = .clear
+        options.placeholder = ""
         let show = expandedStackView.isHidden
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             UIView.animate(withDuration: 1, delay: 0, options: .allowAnimatedContent, animations: {
@@ -130,6 +132,10 @@ class ActivitySearchViewController: UIViewController {
             self.options.tintColor = (show) ? .black : .clear
             if(show) {
                 self.options.becomeFirstResponder()
+                self.options.attributedPlaceholder = NSAttributedString(
+                    string: "Enter category",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+                )
                 self.options.dataArray = allSearchableCategories
                 self.options.reloadAll()
             } else {

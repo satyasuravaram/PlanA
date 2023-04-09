@@ -38,6 +38,12 @@ class SavedPlanViewController: UIViewController {
         let image = UIImage()
         searchBar.backgroundImage = image
         searchBar.searchTextField.backgroundColor = .white
+        searchBar.searchTextField.textColor = .black
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Search plans",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        searchBar.searchTextField.leftView?.tintColor = .gray
         
         // set up 'sort by' button
         setUpPopUpButton()
@@ -67,6 +73,12 @@ class SavedPlanViewController: UIViewController {
             let request = Plan.fetchRequest()
             request.sortDescriptors = [sort]
             self.items = try context.fetch(request)
+            for (index, element) in items!.enumerated().reversed() {
+                if(element.name == nil) {
+                    context.delete(element)
+                    self.items?.remove(at: index)
+                }
+            }
             
             // refresh table
             DispatchQueue.main.async {
