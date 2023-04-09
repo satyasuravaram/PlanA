@@ -215,7 +215,7 @@
                             <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" secondItem="Rqb-x4-f9O" secondAttribute="trailing" constant="15" id="1cF-Ex-1rI"/>
                             <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" secondItem="seK-1t-HjF" secondAttribute="trailing" constant="20" id="1fq-w6-4WW"/>
                             <constraint firstItem="bPt-W5-C8d" firstAttribute="centerX" secondItem="Tss-hE-FcF" secondAttribute="centerX" id="8uq-cW-ser"/>
-                            <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TKD-33-WD8" secondAttribute="trailing" symbolic="YES" id="BlB-rh-6qZ"/>
+                            <constraint firstItem="e7b-od-xJO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XOf-Gv-M93" secondAttribute="trailing" id="BlB-rh-6qZ"/>
                             <constraint firstItem="HJb-ah-GP4" firstAttribute="top" secondItem="Tss-hE-FcF" secondAttribute="top" id="GLk-ul-j0S"/>
                             <constraint firstItem="bPt-W5-C8d" firstAttribute="top" secondItem="e7b-od-xJO" secondAttribute="top" constant="-20" id="Isf-ns-rvv"/>
                             <constraint firstItem="J18-a4-Bbk" firstAttribute="leading" secondItem="e7b-od-xJO" secondAttribute="leading" constant="20" id="Jqg-WG-oIG"/>
@@ -383,7 +383,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPb-8F-iAU">
-                                <rect key="frame" x="128.66666666666666" y="83" width="135.99999999999997" height="37.333333333333343"/>
+                                <rect key="frame" x="118.33333333333333" y="83" width="156.66666666666669" height="45"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="32"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -406,7 +406,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sjF-XY-NA5">
-                                <rect key="frame" x="0.0" y="128.33333333333331" width="393" height="614.66666666666674"/>
+                                <rect key="frame" x="0.0" y="136" width="393" height="607"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BoxCell" rowHeight="196" id="M4y-5N-gCm" customClass="CustomActivityCategoryTableViewCell" customModule="PlanA" customModuleProvider="target">
@@ -429,13 +429,13 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOk-PQ-uN7">
-                                                    <rect key="frame" x="40.000000000000007" y="24" width="69.666666666666686" height="20"/>
+                                                    <rect key="frame" x="40.000000000000007" y="24" width="80.666666666666686" height="24"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press here to select an activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-mZ-AeV">
-                                                    <rect key="frame" x="39.999999999999986" y="87" width="231.66666666666663" height="20"/>
+                                                    <rect key="frame" x="40" y="87" width="257.33333333333331" height="24"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1089,7 +1089,7 @@
                             <constraint firstItem="WBa-Su-38f" firstAttribute="leading" secondItem="28d-FM-0Wa" secondAttribute="leading" constant="10" id="Bao-Vk-677"/>
                             <constraint firstItem="xBJ-co-WEe" firstAttribute="centerY" secondItem="T5h-Nz-fdl" secondAttribute="centerY" id="EQ7-gf-w6k"/>
                             <constraint firstItem="28d-FM-0Wa" firstAttribute="trailing" secondItem="usv-Gp-8b7" secondAttribute="trailing" id="LbZ-aE-8DQ"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T5h-Nz-fdl" secondAttribute="trailing" constant="-98" id="Qw7-vE-1Xv"/>
+                            <constraint firstItem="28d-FM-0Wa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T5h-Nz-fdl" secondAttribute="trailing" id="Qw7-vE-1Xv"/>
                             <constraint firstAttribute="bottom" secondItem="usv-Gp-8b7" secondAttribute="bottom" id="SgO-gz-etc"/>
                             <constraint firstItem="R8q-cl-aJZ" firstAttribute="leading" secondItem="Kfu-j3-sup" secondAttribute="trailing" constant="8" id="TG5-Dq-2BA"/>
                             <constraint firstItem="Kfu-j3-sup" firstAttribute="centerY" secondItem="R8q-cl-aJZ" secondAttribute="centerY" id="U3b-Oe-37H"/>

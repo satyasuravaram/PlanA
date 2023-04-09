@@ -286,6 +286,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                 self.saved = true
                 do {
                     try self.context.save()
+                    self.saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
                 }
                 catch {
                     print("Issue saving core data")
@@ -373,6 +374,7 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        vStack.backgroundColor = tableView.backgroundColor
         if(planDidChange) {
             tableView.reloadData()
         }
