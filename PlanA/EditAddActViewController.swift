@@ -120,6 +120,11 @@ class EditAddActViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func directionsButtonPressed() {
+        
+        if (address == "No location found") {
+            return
+        }
+        
         print("Get directions")
         let locationArr = address.split(separator: ",")
         let lat = locationArr[0].replacingOccurrences(of: "(", with: "")
