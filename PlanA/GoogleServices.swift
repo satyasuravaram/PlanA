@@ -24,7 +24,8 @@ public func getPlaceByID(
                                               UInt(GMSPlaceField.placeID.rawValue) |
                                               UInt(GMSPlaceField.openingHours.rawValue) |
                                               UInt(GMSPlaceField.priceLevel.rawValue) |
-                                              UInt(GMSPlaceField.rating.rawValue))
+                                              UInt(GMSPlaceField.rating.rawValue) |
+                                              UInt(GMSPlaceField.formattedAddress.rawValue))
 
     GMSPlacesClient.shared().fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil, callback: {
       (place: GMSPlace?, error: Error?) in
