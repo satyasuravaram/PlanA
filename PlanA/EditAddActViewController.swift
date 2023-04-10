@@ -126,13 +126,12 @@ class EditAddActViewController: UIViewController, UITextFieldDelegate {
         }
         
         print("Get directions")
-        let locationArr = address.split(separator: ",")
-        let lat = locationArr[0].replacingOccurrences(of: "(", with: "")
-        let lng = locationArr[1].replacingOccurrences(of: ")", with: "")
         
-        // open google maps in safari
-        if let url = URL(string: "https://www.google.co.in/maps/dir/??saddr=&daddr=\(lat),\(lng)&directionsmode=driving") {
+        let dirString = address.replacingOccurrences(of: " ", with: "+")
+        
+        if let url = URL(string: "https://maps.google.com/maps?daddr=\(dirString)") {
             UIApplication.shared.open(url)
         }
+        
     }
 }
