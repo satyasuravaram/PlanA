@@ -439,6 +439,10 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             cell.titleLabel.text = activities[row].name
             
             cell.businessHours.text = activities[row].businessHours
+            cell.businessHours.textColor = .black
+            if (cell.businessHours.text != nil && cell.businessHours.text!.contains("Closed")) {
+                cell.businessHours.textColor = .red
+            }
             
             var text = ""
             let dateFormatter = DateFormatter()
@@ -457,6 +461,26 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             
             //cell.durationLabel.textColor = .black
             cell.durationLabel.text = text
+            
+            // TODO: Check if shop is open during time slot
+            if cell.businessHours.text != nil {
+                var withinHours = false
+                print("Check time slot")
+                print(cell.businessHours.text)
+                let index = cell.businessHours.text?.firstIndex(of: ":")
+                print(index)
+                print(cell.businessHours.text![(index!)...])
+                
+                // do checking here
+                // set withinHours
+                
+                if withinHours {
+                    cell.businessHours.textColor = .black
+                } else {
+                    cell.businessHours.textColor = .red
+                }
+            }
+            
             if(activities[row].actDescription == "Added Activity" || UIImage(named: activities[row].categoryName!) == nil) {
                 cell.cellBackground.image = UIImage(named: "GrayBox")
             } else {
