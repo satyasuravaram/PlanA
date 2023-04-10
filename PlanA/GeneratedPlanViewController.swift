@@ -199,13 +199,14 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                     let place = places[i]
                     let placeID = place["placeID"] as! String
                     result[index].name = place["name"] as? String
-                    result[index].location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
+                    //result[index].location = "(\(place["placeLat"]!),\(place["placeLng"]!))"
                     // get business hours
                     DispatchQueue.main.async {
                         getPlaceByID(placeID: placeID, completion: { place in
                             print("The selected place is: \(place.name ?? "None")")
                             print(place.placeID!)
-                            
+                            // get location
+                            result[index].location = place.formattedAddress!
                             if place.openingHours == nil || place.openingHours?.weekdayText == nil {
                                 result[index].businessHours = ""
                                 self.tableView.reloadData()
