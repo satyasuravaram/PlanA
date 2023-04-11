@@ -563,7 +563,7 @@
 				INFOPLIST_FILE = PlanA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Plan A";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like to use your location to search for nearby activities within a certain radius to help build a plan.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -596,7 +596,7 @@
 				INFOPLIST_FILE = PlanA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Plan A";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like to use your location to search for nearby activities within a certain radius to help build a plan.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

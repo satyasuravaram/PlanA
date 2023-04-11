@@ -464,70 +464,58 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
             cell.durationLabel.text = text
             
             // TODO: Check if shop is open during time slot
-            if cell.businessHours.text != nil {
-                // if open 24 hours then always true
-                // if closed then false
-                var withinHours = false
+            if (cell.businessHours.text != nil && cell.businessHours.text != "") {
+                
+                var withinHours = true
                 print("Check time slot")
                 print(cell.businessHours.text!)
-                var timeString = cell.businessHours.text?.firstIndex(of: ":")
-                var index = cell.businessHours.text?.index(timeString!, offsetBy: 2)
+                let timeString = cell.businessHours.text?.firstIndex(of: ":")
+                let index = cell.businessHours.text?.index(timeString!, offsetBy: 2)
                 let bhString = cell.businessHours.text?.suffix(from: index!)
                 print(bhString!)
                 
-//                let timesArr = bhString?.components(separatedBy: " – ")
-//                print(timesArr!.description)
-//                let openTimeArr = timesArr![0].components(separatedBy: " ")
-//                print(openTimeArr.description)
-//                let startHour = Int(openTimeArr[0].prefix(upTo: openTimeArr[0].firstIndex(of: ":")!))
-//                timeString = openTimeArr[0].firstIndex(of: ":")
-//                index = openTimeArr[0].index(timeString!, offsetBy: 1)
-//                let startMin = Int(openTimeArr[0].suffix(from: index!))
-                let businessOpen = getCalendarTime(timeString: String(bhString!), timeIndex: 0, isAct: false)
-                print("Time1: ", businessOpen.description)
-                
-                let businessClose = getCalendarTime(timeString: String(bhString!), timeIndex: 1, isAct: false)
-                print("Time2: ", businessClose.description)
-                
-                let actStart = getCalendarTime(timeString: String(activities[row].timeSpan!), timeIndex: 0, isAct: true)
-                print("Time3: ", actStart.description)
-                
-                let actEnd = getCalendarTime(timeString: String(activities[row].timeSpan!), timeIndex: 1, isAct: true)
-                print("Time4: ", actEnd.description)
-                
-                if(businessOpen[0] == "AM") {
-                    if(actStart[0] == "PM") {
-                        withinHours = true
-                    } else {
-                        if(Int(businessOpen[0])! > Int(actStart[0])!) {
-                            withinHours = false
-                        } else {
-                            withinHours = true
-                        }
-                    }
+                // if open 24 hours then always true
+                if(bhString == "Open 24 hours") {
+                    withinHours = true
+                } else if(bhString == "Closed") {
+                    // if closed then false
+                    withinHours = false
                 } else {
-                    if(actStart[0] == "AM") {
+                    let businessOpen = getCalendarTime(timeString: String(bhString!), timeIndex: 0, isAct: false)
+                    print("Time1: ", businessOpen.description)
+                    
+                    var businessClose = getCalendarTime(timeString: String(bhString!), timeIndex: 1, isAct: false)
+                    print("Time2: ", businessClose.description)
+                    
+                    // if close time is before open time, add 24 hours
+                    if(businessOpen > businessClose) {
+                        businessClose = businessClose.addingTimeInterval(24*60)
+                    }
+                    
+                    let actStart = getCalendarTime(timeString: String(activities[row].timeSpan!), timeIndex: 0, isAct: true)
+                    print("Time3: ", actStart.description)
+                    
+                    var actEnd = getCalendarTime(timeString: String(activities[row].timeSpan!), timeIndex: 1, isAct: true)
+                    print("Time4: ", actEnd.description)
+                    
+                    if(actStart > actEnd) {
+                        actEnd = actEnd.addingTimeInterval(24*60)
+                    }
+                    
+                    if(actStart < businessOpen || actStart > businessClose) {
                         withinHours = false
+                    }
+                    if(!withinHours || actEnd < businessOpen || actEnd > businessClose) {
+                        withinHours = false
+                    }
+
+                    if withinHours {
+                        cell.businessHours.textColor = .black
                     } else {
-                        if(Int(businessOpen[0])! < Int(actStart[0])!) {
-                            withinHours = false
-                        } else {
-                            withinHours = true
-                        }
+                        cell.businessHours.textColor = .red
                     }
                 }
                 
-//                print(index)
-//                print(cell.businessHours.text![(index!)...])
-//
-//                // do checking here
-//                // set withinHours
-//
-//                if withinHours {
-//                    cell.businessHours.textColor = .black
-//                } else {
-//                    cell.businessHours.textColor = .red
-//                }
             }
             
             if(activities[row].actDescription == "Added Activity" || UIImage(named: activities[row].categoryName!) == nil) {
@@ -552,7 +540,7 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func getCalendarTime(timeString: String, timeIndex: Int, isAct: Bool) -> [String]{
+    func getCalendarTime(timeString: String, timeIndex: Int, isAct: Bool) -> Date{
         var sep = (isAct) ? " - " : " – "
         let timesArr = timeString.components(separatedBy: sep)
         print(timesArr.description)
@@ -563,18 +551,27 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         var startHour = Int(openTimeArr[0].prefix(upTo: timeString))
         let newIndex = openTimeArr[0].index(timeString, offsetBy: 1)
         let startMin = Int(openTimeArr[0].suffix(from: newIndex))
-        var components = DateComponents()
-        components.hour = startHour
-        components.minute = startMin
-        let early = Calendar.current.startOfDay(for: Date())
-        let date = 
-            .date(from: components)
-        print(date)
+        
+        if(openTimeArr[1] == "PM") {
+            if(startHour != 12) {
+                startHour! += 12
+            }
+        } else {
+            if(startHour == 12) {
+                startHour = 0
+            }
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let early = Calendar.current.startOfDay(for: Date()).addingTimeInterval(TimeInterval(60*startHour!+startMin!))
+        let Estring = dateFormatter.string(from: early)
+        
+        print(early, " - ", Estring)
         print(startHour!)
         print(startMin!)
-        startHour = (startHour == 12) ? 0 : startHour
-        let totalTime = (startHour!) * 60 + startMin!
-        return [String(totalTime), openTimeArr[1]]
+        
+        return early
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
