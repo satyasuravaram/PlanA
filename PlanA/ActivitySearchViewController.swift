@@ -38,7 +38,7 @@ class ActivitySearchViewController: UIViewController {
         button.setTitle("Add", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1), for: .normal)
-        button.layer.cornerRadius = 35 / 2
+        button.layer.cornerRadius = 40 / 2
         button.isHidden = true
         button.addTarget(
               self, action: #selector(addButtonPressed), for: .touchUpInside)
@@ -70,11 +70,12 @@ class ActivitySearchViewController: UIViewController {
         view.backgroundColor = UIColor(red: 68/255, green: 20/255, blue: 152/255, alpha: 1)
         
         // search bar
-        hStack.layer.cornerRadius = 35 / 2
+        hStack.layer.cornerRadius = 40 / 2
         expandedStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.6).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.12).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.15).isActive = true
         hStack.addArrangedSubview(expandedStackView)
         hStack.addArrangedSubview(addButton)
+        tableView.contentInset.bottom = 10
     }
     
     @objc func textDidChange() {
@@ -133,7 +134,7 @@ class ActivitySearchViewController: UIViewController {
             if(show) {
                 self.options.becomeFirstResponder()
                 self.options.attributedPlaceholder = NSAttributedString(
-                    string: "Enter category",
+                    string: "Enter activity",
                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
                 )
                 self.options.dataArray = allSearchableCategories
