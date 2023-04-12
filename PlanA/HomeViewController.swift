@@ -55,6 +55,18 @@ class HomeViewController: UIViewController {
 //        getNearbyPlaces(query: "", location: locationManager.location!, completion: {_ in })
     }
 
+    // listen for rotation event and update image background, readjust frame of view to screen bounds
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        let width = view.bounds.size.width
+        let height = view.bounds.size.height
+        let imageViewBackgroundnew = UIImageView(frame: CGRectMake(0, 0, height, width))
+        imageViewBackgroundnew.image = UIImage(named: "home_screen")
+        imageViewBackgroundnew.contentMode = .scaleAspectFill
+        view.addSubview(imageViewBackgroundnew)
+        view.insertSubview(imageViewBackgroundnew, aboveSubview: view.subviews[0])
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         if(!appDelegate.hasAlreadyLaunched){
             //set hasAlreadyLaunched to false

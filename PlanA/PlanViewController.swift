@@ -140,7 +140,13 @@ extension PlanViewController:UITableViewDelegate, UITableViewDataSource {
             if categories[activityNumber-1] == "" {
                 cell.selectActivity.text = "Press here to select an activity"
             } else {
-                cell.cellBackground.image = UIImage(named: categories[activityNumber-1])
+
+                if(UIImage(named: categories[activityNumber-1]) == nil) {
+                    cell.cellBackground.image = UIImage(named: "Map Background")
+                } else {
+                    cell.cellBackground.image = UIImage(named: categories[activityNumber-1])
+                }
+                
                 cell.cellBackground.contentMode = .scaleAspectFill
                 cell.cellBackground.layer.borderColor = UIColor.lightGray.cgColor
                 cell.cellBackground.layer.borderWidth = 2

@@ -532,13 +532,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-f8-ghO">
-                                <rect key="frame" x="348" y="44" width="35" height="35"/>
+                                <rect key="frame" x="343" y="41.666666666666664" width="40" height="39.999999999999993"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to2-qd-Y1k">
-                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="to2-qd-Y1k" secondAttribute="height" multiplier="1:1" id="8U9-tN-MyI"/>
-                                            <constraint firstAttribute="width" constant="35" id="PgR-Re-dRa"/>
+                                            <constraint firstAttribute="width" constant="40" id="PgR-Re-dRa"/>
                                         </constraints>
                                         <color key="tintColor" red="0.2421472073" green="0.087891660629999993" blue="0.56866300110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
