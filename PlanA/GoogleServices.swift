@@ -75,8 +75,6 @@ public func getNearbyPlaces(
             let json = try JSONSerialization.jsonObject(with: data!, options: [JSONSerialization.ReadingOptions.fragmentsAllowed])
             let result = json as! [String:Any]
             let places = result["results"] as! NSArray
-            print(places)
-            print(places.count)
             var placesRet:[[String:Any]] = []
             for place in places {
                 var placeInfo:[String:Any] = [:]
