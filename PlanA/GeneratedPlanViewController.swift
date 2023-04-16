@@ -220,6 +220,36 @@ class GeneratedPlanViewController: UIViewController, UITextFieldDelegate {
                             let bHours = place.openingHours!.weekdayText![day]
                             result[index].businessHours = bHours
                             self.tableView.reloadData()
+                            
+                            // Pick different place if closed
+                            print("Current place is maybe closed? \(bHours)")
+                            if (bHours.contains("Closed")) {
+                                print("Yes it's closed")
+                                let newI = Int.random(in: 0..<places.count)
+                                let newPlace = places[newI]
+                                let newPlaceID = newPlace["placeID"] as! String
+                                result[index].name = newPlace["name"] as? String
+                                print("new Place: \(result[index].name!)")
+                                getPlaceByID(placeID: newPlaceID, completion: { place in
+                                    print("The selected place is: \(place.name ?? "None")")
+                                    print(place.placeID!)
+                                    // get location
+                                    result[index].location = place.formattedAddress!
+                                    if place.openingHours == nil || place.openingHours?.weekdayText == nil {
+                                        result[index].businessHours = ""
+                                        self.tableView.reloadData()
+                                        return
+                                    }
+                                    print(place.openingHours!.weekdayText!)
+                                    var day = Calendar.current.component(.weekday, from: plan.startDateTime!) - 2
+                                    if day == -1 {
+                                        day = 6
+                                    }
+                                    let bHours = place.openingHours!.weekdayText![day]
+                                    result[index].businessHours = bHours
+                                    self.tableView.reloadData()
+                                })
+                            }
                         })
                     }
                     DispatchQueue.main.async {
@@ -545,13 +575,20 @@ extension GeneratedPlanViewController: UITableViewDelegate, UITableViewDataSourc
         let timesArr = timeString.components(separatedBy: sep)
         print(timesArr.description)
         sep = (isAct) ? " " : " "
-        let openTimeArr = timesArr[timeIndex].components(separatedBy: sep)
+        var openTimeArr = timesArr[timeIndex].components(separatedBy: sep)
         print(openTimeArr.description)
         let timeString = openTimeArr[0].firstIndex(of: ":")!
         var startHour = Int(openTimeArr[0].prefix(upTo: timeString))
         let newIndex = openTimeArr[0].index(timeString, offsetBy: 1)
         let startMin = Int(openTimeArr[0].suffix(from: newIndex))
         
+        if (openTimeArr.count == 1) {
+            if (timesArr[1].contains("PM")) {
+                openTimeArr.append("PM")
+            } else {
+                openTimeArr.append("AM")
+            }
+        }
         if(openTimeArr[1] == "PM") {
             if(startHour != 12) {
                 startHour! += 12
